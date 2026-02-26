@@ -3,106 +3,279 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nhận Key — modgame08</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Nhận Key VIP — PixelHud Mods</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --gold-primary: #f59e0b;
+      --gold-hover: #d97706;
+      --bg-dark: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     body {
-      font-family:'Poppins',sans-serif;
-      padding:20px;
-      background:linear-gradient(135deg,#e0e7ff,#f4f6fb);
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      margin: 0;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .card {
-      max-width:720px;
-      margin:60px auto;
-      background:#fff;
-      padding:28px;
-      border-radius:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
-      text-align:center;
-      animation:fadeIn 0.6s ease;
+      width: 100%;
+      max-width: 600px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.6s ease;
     }
+
     h2 {
-      margin-bottom:12px;
-      font-size:24px;
-      font-weight:600;
-      color:#0b63ff;
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(to right, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+
+    .key-container {
+      margin: 20px 0;
+    }
+
     .key {
-      font-family:monospace;
-      padding:14px;
-      background:#f6f8ff;
-      border-radius:10px;
-      word-break:break-all;
-      font-size:16px;
-      color:#222;
-      position:relative;
+      font-family: monospace;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed var(--gold-primary);
+      border-radius: 12px;
+      word-break: break-all;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fbbf24;
+      position: relative;
+      letter-spacing: 1px;
     }
+
     .loading {
-      background:linear-gradient(90deg,#f6f8ff 25%,#e0e7ff 50%,#f6f8ff 75%);
-      background-size:200% 100%;
-      animation:shimmer 1.5s infinite;
-      color:transparent !important;
+      background: linear-gradient(90deg, rgba(0,0,0,0.5) 25%, rgba(245,158,11,0.1) 50%, rgba(0,0,0,0.5) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      color: transparent !important;
+      border-color: #334155;
     }
+
     .btn {
-      padding:12px 16px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      margin:10px;
-      font-weight:600;
-      font-size:15px;
-      transition:all 0.25s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      margin: 8px 5px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
     }
+
     .btn.primary {
-      background:#0b63ff;
-      color:#fff;
-      box-shadow:0 4px 12px rgba(11,99,255,0.3);
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
     }
+
     .btn.primary:hover {
-      background:#094fcc;
-      transform:translateY(-2px);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
     }
+
     .btn.ghost {
-      background:#fff;
-      color:#0b63ff;
-      border:1px solid rgba(11,99,255,0.2);
+      background: transparent;
+      color: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
     }
+
     .btn.ghost:hover {
-      background:#f0f5ff;
-      transform:translateY(-2px);
+      background: rgba(245, 158, 11, 0.1);
+      transform: translateY(-2px);
     }
+
     p.note {
-      margin-top:16px;
-      color:#666;
-      font-size:13px;
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 13px;
     }
+
+    /* VIP Section Styles */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.5), transparent);
+      margin: 30px 0;
+    }
+
+    .vip-section h3 {
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .pricing-box {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 16px;
+    }
+
+    .price-item:last-child {
+      border-bottom: none;
+    }
+
+    .price-item strong {
+      color: var(--gold-primary);
+      font-size: 18px;
+    }
+
+    .buy-note {
+      color: #10b981;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* Social Contacts */
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .social-grid .btn {
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+
+    .contact-info {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .contact-info p {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info a {
+      color: #60a5fa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .contact-info a:hover {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+
     @keyframes shimmer {
-      0%{background-position:200% 0}
-      100%{background-position:-200% 0}
+      0% { background-position: 200% 0 }
+      100% { background-position: -200% 0 }
     }
     @keyframes fadeIn {
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
+      from { opacity: 0; transform: translateY(20px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>🔑 Đây là KEY của bạn</h2>
-    <p>Sao chép key bên dưới rồi mở Telegram để dán vào bot.</p>
+    <h2>🔑 ĐÂY LÀ KEY CỦA BẠN</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">Sao chép key bên dưới rồi mở Telegram để dán vào bot.</p>
 
-    <div>
+    <div class="key-container">
       <div id="key" class="key loading">Đang tải key...</div>
-      <div style="margin-top:16px">
-        <button id="copyBtn" class="btn primary">📋 Sao chép</button>
-        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 Mở Telegram</a>
+      <div style="margin-top: 20px;">
+        <button id="copyBtn" class="btn primary">📋 Sao chép Key</button>
+        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 Mở Telegram Bot</a>
       </div>
     </div>
-
     <p class="note">Nếu nút "Sao chép" không hoạt động, hãy chạm và giữ để chọn rồi copy thủ công.</p>
+
+    <div class="divider"></div>
+
+    <div class="vip-section">
+      <h3>👑 ADMIN CÓ BÁN KEY DÙNG APP MOD SKIN</h3>
+      <div class="pricing-box">
+        <div class="price-item">
+          <span>1 Ngày</span>
+          <strong>3K</strong>
+        </div>
+        <div class="price-item">
+          <span>1 Tuần</span>
+          <strong>15K</strong>
+        </div>
+        <div class="price-item">
+          <span>1 Tháng</span>
+          <strong>40K</strong>
+        </div>
+      </div>
+      <p class="buy-note">🛒 Mua inbox nhé! Thông tin liên hệ bên dưới 👇</p>
+    </div>
+
+    <div class="social-grid">
+      <a href="https://discord.gg/8QDp3tTwjT" target="_blank" class="btn" style="background: #5865F2; color: #fff; border: none;">👾 Discord Server</a>
+      <a href="https://t.me/pixelhudmods_vietnam" target="_blank" class="btn" style="background: #0088cc; color: #fff; border: none;">✈️ Telegram Channel</a>
+      <a href="https://t.me/PixelHudMods" target="_blank" class="btn" style="background: #0088cc; color: #fff; border: none; grid-column: 1 / -1;">💬 Telegram Chat</a>
+    </div>
+
+    <div class="contact-info">
+      <p>📞 <strong>Zalo:</strong> <a href="https://zalo.me/0963677502" target="_blank">0963677502</a> - Ho Minh Phong</p>
+      <p>✈️ <strong>Tele Admin:</strong> <a href="https://t.me/minhphongxvn" target="_blank">@minhphongxvn</a></p>
+      <p>👾 <strong>Discord Admin:</strong> <span style="color: #60a5fa;">@honghac.</span></p>
+    </div>
   </div>
 
 <script>
@@ -117,9 +290,11 @@ function getQueryParam(name){
   const BOT_USERNAME = "pixelhudmodsV1_bot"; // username bot
 
   if (!keyParam) {
-    keyEl.textContent = '❌ Không tìm thấy key trong URL. Ví dụ: ?key=KEY_pixelhud_xxx';
+    keyEl.textContent = '❌ Không tìm thấy key trong URL.';
     keyEl.classList.remove('loading');
     copyBtn.disabled = true;
+    copyBtn.style.opacity = '0.5';
+    copyBtn.style.cursor = 'not-allowed';
     openTg.style.display = 'none';
     return;
   }
@@ -129,17 +304,22 @@ function getQueryParam(name){
   openTg.href = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(keyParam)}`;
 
   copyBtn.addEventListener('click', async function(){
+    if(copyBtn.disabled) return;
     try {
       await navigator.clipboard.writeText(keyParam);
       copyBtn.textContent = '✅ Đã sao chép';
-      setTimeout(()=> copyBtn.textContent = '📋 Sao chép', 2000);
+      copyBtn.style.background = '#10b981'; // Đổi màu xanh lá khi copy thành công
+      setTimeout(() => {
+        copyBtn.innerHTML = '📋 Sao chép Key';
+        copyBtn.style.background = ''; // Trả lại màu gold
+      }, 2000);
     } catch(e){
       const range = document.createRange();
       range.selectNodeContents(keyEl);
       const sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
-      alert('⚠️ Trình duyệt không cho phép sao chép tự động. Vui lòng nhấn Ctrl+C để sao chép thủ công.');
+      alert('⚠️ Trình duyệt không cho phép sao chép tự động. Vui lòng nhấn copy thủ công.');
     }
   });
 })();
