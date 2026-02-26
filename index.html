@@ -2,327 +2,565 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Nhận Key VIP — PixelHud Mods</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --gold-primary: #f59e0b;
-      --gold-hover: #d97706;
-      --bg-dark: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.85);
+      --gold-primary: #ffeb3b;
+      --gold-hover: #fdd835;
+      --neon-gold: #fff176;
+      --neon-cyan: #67e8f9;
+      --bg-dark: #0a0f1c;
+      --card-bg: rgba(15, 23, 42, 0.95);
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Poppins', sans-serif;
-      padding: 20px;
+      font-family: 'Poppins', system-ui, sans-serif;
+      padding: 0;
       margin: 0;
-      background: radial-gradient(circle at top, #1e293b, #020617);
+      background: radial-gradient(circle at 50% 20%, #1e3a8a 0%, #020617 70%);
       color: var(--text-main);
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background động + twinkling stars nâng cấp */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle, rgba(255,235,59,0.12) 1px, transparent 1px),
+        radial-gradient(circle, rgba(103,232,249,0.08) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,235,59,0.1) 1px, transparent 1px);
+      background-size: 60px 60px, 100px 100px, 140px 140px;
+      animation: twinkling 6s linear infinite alternate;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes twinkling {
+      0% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+      100% { opacity: 0.5; transform: scale(1); }
+    }
+
+    .led-marquee {
+      background: linear-gradient(180deg, #111827, #0f172a);
+      padding: 14px 0;
+      overflow: hidden;
+      border-bottom: 5px solid #ffeb3b;
+      box-shadow: 0 0 40px #ffeb3b, inset 0 0 25px rgba(255,235,59,0.6);
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
-      justify-content: center;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      white-space: nowrap;
+      font-family: ui-monospace, monospace;
+      font-size: clamp(16px, 4.5vw, 20px);
+      font-weight: 800;
+      color: #ffeb3b;
+      text-shadow: 
+        0 0 12px #fff,
+        0 0 25px #ffeb3b,
+        0 0 50px #ffeb3b,
+        0 0 70px #67e8f9;
+      padding-left: 100%;
+      animation: marquee 20s linear infinite;
+      letter-spacing: 4px;
+    }
+
+    .marquee-content a {
+      color: #67e8f9;
+      text-decoration: underline wavy #fff176;
+      animation: pulseGlow 1.5s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 10px #67e8f9; }
+      100% { text-shadow: 0 0 30px #67e8f9; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    .led-marquee::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: scanline 1.8s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(300%); }
     }
 
     .card {
       width: 100%;
-      max-width: 600px;
+      max-width: 660px;
+      margin: 20px auto;
       background: var(--card-bg);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(245, 158, 11, 0.2);
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 42px 34px;
+      border-radius: 28px;
+      box-shadow: 
+        0 25px 60px rgba(0,0,0,0.7),
+        0 0 40px rgba(255,235,59,0.35),
+        inset 0 3px 0 rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,235,59,0.5);
       text-align: center;
-      backdrop-filter: blur(10px);
-      animation: fadeIn 0.6s ease;
+      backdrop-filter: blur(18px);
+      animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,235,59,0.35); }
+      100% { box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 60px rgba(255,235,59,0.55); }
+    }
+
+    @keyframes cardPop {
+      from { opacity: 0; transform: scale(0.88) translateY(40px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     h2 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 26px;
-      font-weight: 700;
-      background: linear-gradient(to right, #fbbf24, #f59e0b);
+      font-size: clamp(26px, 6vw, 36px);
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff176, #ffeb3b, #fde047);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 40px #ffeb3b;
+      animation: textGlow 1.5s infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 40px #ffeb3b; }
+      100% { text-shadow: 0 0 60px #ffeb3b; }
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15.5px;
+      margin-bottom: 28px;
+      font-weight: 500;
     }
 
     .key-container {
-      margin: 20px 0;
+      margin: 26px 0;
     }
 
     .key {
-      font-family: monospace;
-      padding: 16px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px dashed var(--gold-primary);
-      border-radius: 12px;
+      font-family: ui-monospace, monospace;
+      padding: 22px 26px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 3px dashed var(--gold-primary);
+      border-radius: 18px;
       word-break: break-all;
-      font-size: 18px;
-      font-weight: 600;
-      color: #fbbf24;
+      font-size: clamp(17px, 4.5vw, 21px);
+      font-weight: 700;
+      color: #fff176;
+      letter-spacing: 2.5px;
+      line-height: 1.5;
+      box-shadow: 
+        inset 0 6px 20px rgba(0,0,0,0.8),
+        0 0 25px rgba(255,235,59,0.6);
       position: relative;
-      letter-spacing: 1px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      animation: keyPulse 2s infinite alternate;
+    }
+
+    @keyframes keyPulse {
+      0% { transform: scale(1); box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 25px rgba(255,235,59,0.6); }
+      100% { transform: scale(1.01); box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 40px rgba(255,235,59,0.8); }
+    }
+
+    .key::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: shine 2.5s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 200%; }
+      100% { left: 200%; }
     }
 
     .loading {
-      background: linear-gradient(90deg, rgba(0,0,0,0.5) 25%, rgba(245,158,11,0.1) 50%, rgba(0,0,0,0.5) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
+      animation: shimmer 1.6s infinite linear;
       color: transparent !important;
-      border-color: #334155;
+      border-style: solid;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 26px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 12px 20px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      margin: 8px 5px;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.3s ease;
+      padding: 16px 32px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
+      min-height: 56px;
+      min-width: 170px;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      animation: btnBounce 1.8s infinite alternate;
+    }
+
+    @keyframes btnBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      background: linear-gradient(135deg, #ffeb3b, #fde047);
+      color: #1e2937;
+      box-shadow: 0 10px 30px rgba(255,235,59,0.5);
     }
 
     .btn.primary:hover {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255,235,59,0.7);
     }
 
     .btn.ghost {
       background: transparent;
-      color: var(--gold-primary);
-      border: 1px solid var(--gold-primary);
+      color: #ffeb3b;
+      border: 3px solid #ffeb3b;
     }
 
     .btn.ghost:hover {
-      background: rgba(245, 158, 11, 0.1);
-      transform: translateY(-2px);
+      background: rgba(255,235,59,0.15);
+      transform: translateY(-4px);
     }
 
-    p.note {
-      margin-top: 10px;
-      color: var(--text-muted);
-      font-size: 13px;
+    .note {
+      margin-top: 20px;
+      color: #94a3b8;
+      font-size: 13.5px;
     }
 
-    /* VIP Section Styles */
+    /* VIP Section */
     .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.5), transparent);
-      margin: 30px 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffeb3b, transparent);
+      margin: 40px 0;
+      box-shadow: 0 0 15px #ffeb3b;
+      animation: dividerGlow 2s infinite alternate;
+    }
+
+    @keyframes dividerGlow {
+      0% { box-shadow: 0 0 15px #ffeb3b; }
+      100% { box-shadow: 0 0 30px #ffeb3b; }
     }
 
     .vip-section h3 {
-      color: #fff;
-      font-size: 18px;
-      margin-bottom: 15px;
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffeb3b, #fff176);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
     }
 
     .pricing-box {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 18px;
+      padding: 10px;
+      margin-bottom: 22px;
+      border: 1px solid #ffeb3b33;
+      animation: pricePulse 2.5s infinite alternate;
+    }
+
+    @keyframes pricePulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
     }
 
     .price-item {
+      padding: 16px 22px;
       display: flex;
       justify-content: space-between;
-      padding: 10px 15px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-size: 16px;
+      font-size: 17px;
+      border-bottom: 1px solid #334155;
     }
 
-    .price-item:last-child {
-      border-bottom: none;
-    }
-
-    .price-item strong {
-      color: var(--gold-primary);
-      font-size: 18px;
-    }
+    .price-item:last-child { border-bottom: none; }
+    .price-item strong { color: #fff176; font-size: 21px; }
 
     .buy-note {
-      color: #10b981;
-      font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 20px;
+      color: #34d399;
+      font-weight: 700;
+      font-size: 16px;
+      animation: noteBlink 1s infinite alternate;
     }
 
-    /* Social Contacts */
+    @keyframes noteBlink {
+      0% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    /* Social */
     .social-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .social-grid .btn {
-      margin: 0;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 13px;
+      gap: 14px;
+      margin-bottom: 26px;
     }
 
     .contact-info {
-      background: rgba(15, 23, 42, 0.6);
-      padding: 15px;
-      border-radius: 12px;
+      background: rgba(15,23,42,0.8);
+      padding: 22px;
+      border-radius: 18px;
       text-align: left;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.05);
+      font-size: 15px;
+      border: 1px solid #334155;
+      animation: contactPulse 3s infinite alternate;
+    }
+
+    @keyframes contactPulse {
+      0% { box-shadow: 0 0 10px rgba(103,232,249,0.3); }
+      100% { box-shadow: 0 0 20px rgba(103,232,249,0.5); }
     }
 
     .contact-info p {
-      margin: 8px 0;
+      margin: 14px 0;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
-    .contact-info a {
-      color: #60a5fa;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    
-    .contact-info a:hover {
-      color: #93c5fd;
-      text-decoration: underline;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 200% 0 }
-      100% { background-position: -200% 0 }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px) }
-      to { opacity: 1; transform: translateY(0) }
+    /* Canvas Confetti */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
     }
 
     /* Responsive */
-    @media (max-width: 480px) {
-      .social-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 640px) {
+      .card { margin: 12px 8px; padding: 32px 22px; border-radius: 22px; }
+      .btn-group { flex-direction: column; }
+      .btn { min-width: 100%; }
+      .social-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <div class="led-marquee">
+    <div class="marquee-content">
+      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (THÍCH THÌ NHẤP VÀO ĐÂY ĐỂ MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (THÍCH THÌ NHẤP VÀO ĐÂY ĐỂ MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥
+    </div>
+  </div>
+
   <div class="card">
-    <h2>🔑 ĐÂY LÀ KEY CỦA BẠN</h2>
-    <p style="color: var(--text-muted); margin-bottom: 20px;">Sao chép key bên dưới rồi mở Telegram để dán vào bot.</p>
+    <h2>🔑 KEY VIP CỦA BẠN ĐÂY!</h2>
+    <p class="subtitle">Sao chép ngay và dán vào app hoặc bot telegram nhé !!!! </p>
 
     <div class="key-container">
       <div id="key" class="key loading">Đang tải key...</div>
-      <div style="margin-top: 20px;">
-        <button id="copyBtn" class="btn primary">📋 Sao chép Key</button>
-        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 Mở Telegram Bot</a>
+      
+      <div class="btn-group">
+        <button id="copyBtn" class="btn primary">📋 SAO CHÉP KEY</button>
+        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 MỞ TELEGRAM BOT</a>
       </div>
     </div>
-    <p class="note">Nếu nút "Sao chép" không hoạt động, hãy chạm và giữ để chọn rồi copy thủ công.</p>
+
+    <p class="note">Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
 
     <div class="divider"></div>
 
     <div class="vip-section">
-      <h3>👑 ADMIN CÓ BÁN KEY DÙNG APP MOD SKIN</h3>
+      <h3>👑 ADMIN BÁN KEY MOD SKIN</h3>
       <div class="pricing-box">
-        <div class="price-item">
-          <span>1 Ngày</span>
-          <strong>3K</strong>
-        </div>
-        <div class="price-item">
-          <span>1 Tuần</span>
-          <strong>15K</strong>
-        </div>
-        <div class="price-item">
-          <span>1 Tháng</span>
-          <strong>40K</strong>
-        </div>
+        <div class="price-item"><span>1 Ngày</span><strong>3K</strong></div>
+        <div class="price-item"><span>1 Tuần</span><strong>15K</strong></div>
+        <div class="price-item"><span>1 Tháng</span><strong>40K</strong></div>
       </div>
-      <p class="buy-note">🛒 Mua inbox nhé! Thông tin liên hệ bên dưới 👇</p>
+      <p class="buy-note">🛒 Inbox ngay để mua key chính chủ!</p>
     </div>
 
     <div class="social-grid">
-      <a href="https://discord.gg/8QDp3tTwjT" target="_blank" class="btn" style="background: #5865F2; color: #fff; border: none;">👾 Discord Server</a>
-      <a href="https://t.me/pixelhudmods_vietnam" target="_blank" class="btn" style="background: #0088cc; color: #fff; border: none;">✈️ Telegram Channel</a>
-      <a href="https://t.me/PixelHudMods" target="_blank" class="btn" style="background: #0088cc; color: #fff; border: none; grid-column: 1 / -1;">💬 Telegram Chat</a>
+      <a href="https://discord.gg/8QDp3tTwjT" target="_blank" class="btn" style="background:#5865F2;color:#fff;">👾 Discord Server</a>
+      <a href="https://t.me/pixelhudmods_vietnam" target="_blank" class="btn" style="background:#0088cc;color:#fff;">✈️ Telegram Channel</a>
+      <a href="https://t.me/PixelHudMods" target="_blank" class="btn" style="background:#0088cc;color:#fff;grid-column:1/-1;">💬 Telegram Chat Group</a>
     </div>
 
     <div class="contact-info">
-      <p>📞 <strong>Zalo:</strong> <a href="https://zalo.me/0963677502" target="_blank">0963677502</a> - Ho Minh Phong</p>
-      <p>✈️ <strong>Tele Admin:</strong> <a href="https://t.me/minhphongxvn" target="_blank">@minhphongxvn</a></p>
-      <p>👾 <strong>Discord Admin:</strong> <span style="color: #60a5fa;">@honghac.</span></p>
+      <p>📞 <strong>Zalo:</strong> <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
+      <p>✈️ <strong>Tele Admin:</strong> <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+      <p>👾 <strong>Discord Admin:</strong> <span style="color:#67e8f9;">@honghac.</span></p>
     </div>
   </div>
 
-<script>
-function getQueryParam(name){
-  return new URLSearchParams(window.location.search).get(name);
-}
-(function(){
-  const keyParam = getQueryParam('key') || getQueryParam('KEY') || getQueryParam('k');
-  const keyEl = document.getElementById('key');
-  const copyBtn = document.getElementById('copyBtn');
-  const openTg = document.getElementById('openTg');
-  const BOT_USERNAME = "pixelhudmodsV1_bot"; // username bot
+  <!-- CANVAS CONFETTI -->
+  <canvas id="confetti-canvas"></canvas>
 
-  if (!keyParam) {
-    keyEl.textContent = '❌ Không tìm thấy key trong URL.';
-    keyEl.classList.remove('loading');
-    copyBtn.disabled = true;
-    copyBtn.style.opacity = '0.5';
-    copyBtn.style.cursor = 'not-allowed';
-    openTg.style.display = 'none';
-    return;
-  }
+  <script>
+    // ====================== CONFETTI SIÊU ĐẸP ======================
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  keyEl.textContent = keyParam;
-  keyEl.classList.remove('loading');
-  openTg.href = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(keyParam)}`;
+    let particles = [];
+    const colors = ['#ffeb3b', '#fff176', '#67e8f9', '#a5f3fc', '#34d399'];
 
-  copyBtn.addEventListener('click', async function(){
-    if(copyBtn.disabled) return;
-    try {
-      await navigator.clipboard.writeText(keyParam);
-      copyBtn.textContent = '✅ Đã sao chép';
-      copyBtn.style.background = '#10b981'; // Đổi màu xanh lá khi copy thành công
-      setTimeout(() => {
-        copyBtn.innerHTML = '📋 Sao chép Key';
-        copyBtn.style.background = ''; // Trả lại màu gold
-      }, 2000);
-    } catch(e){
-      const range = document.createRange();
-      range.selectNodeContents(keyEl);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      alert('⚠️ Trình duyệt không cho phép sao chép tự động. Vui lòng nhấn copy thủ công.');
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 12 + 6;
+        this.speed = Math.random() * 6 + 4;
+        this.angle = Math.random() * 360;
+        this.rotation = Math.random() * 0.1 - 0.05;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+      }
+      update() {
+        this.y += this.speed;
+        this.angle += this.rotation;
+        this.speed *= 0.99;
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.fillStyle = this.color;
+        if (this.shape === 'rect') {
+          ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size*1.6);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size/2, 0, Math.PI*2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
     }
-  });
-})();
-</script>
+
+    function launchConfetti(count = 180) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => p.y < canvas.height + 50);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      
+      if (particles.length > 0) requestAnimationFrame(animateConfetti);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // ====================== MAIN SCRIPT ======================
+    function getQueryParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    (function() {
+      const keyParam = getQueryParam('key') || getQueryParam('KEY') || getQueryParam('k');
+      const keyEl = document.getElementById('key');
+      const copyBtn = document.getElementById('copyBtn');
+      const openTg = document.getElementById('openTg');
+      const BOT_USERNAME = "pixelhudmodsV1_bot";
+
+      if (!keyParam) {
+        keyEl.textContent = '❌ Không tìm thấy key!';
+        keyEl.classList.remove('loading');
+        copyBtn.disabled = true;
+        openTg.style.display = 'none';
+        return;
+      }
+
+      keyEl.textContent = keyParam;
+      keyEl.classList.remove('loading');
+      openTg.href = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(keyParam)}`;
+
+      copyBtn.addEventListener('click', async () => {
+        if (copyBtn.disabled) return;
+
+        try {
+          await navigator.clipboard.writeText(keyParam);
+          
+          // NỔ CONFETTI + hiệu ứng nút
+          launchConfetti(250);
+          animateConfetti();
+
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = '✅ ĐÃ SAO CHÉP!';
+          copyBtn.style.background = 'linear-gradient(135deg, #34d399, #10b981)';
+          copyBtn.style.color = '#fff';
+          copyBtn.style.transform = 'scale(1.1)';
+
+          setTimeout(() => {
+            copyBtn.innerHTML = originalHTML;
+            copyBtn.style.background = '';
+            copyBtn.style.color = '';
+            copyBtn.style.transform = '';
+          }, 2400);
+
+        } catch(e) {
+          const range = document.createRange();
+          range.selectNodeContents(keyEl);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          alert('⚠️ Copy thủ công nhé!\nChạm giữ vào key để copy.');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
