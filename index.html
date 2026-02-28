@@ -6,7 +6,7 @@
   <title>Nhận Key VIP — PixelHud Mods</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -33,355 +33,233 @@
       position: relative;
     }
 
-    /* Background động + twinkling stars nâng cấp */
+    /* Tối ưu Background: Loại bỏ animation twinkling và scale gây lag */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(circle, rgba(255,235,59,0.12) 1px, transparent 1px),
-        radial-gradient(circle, rgba(103,232,249,0.08) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,235,59,0.1) 1px, transparent 1px);
-      background-size: 60px 60px, 100px 100px, 140px 140px;
-      animation: twinkling 6s linear infinite alternate;
+        radial-gradient(circle, rgba(255,235,59,0.08) 1px, transparent 1px),
+        radial-gradient(circle, rgba(103,232,249,0.05) 1px, transparent 1px);
+      background-size: 80px 80px, 120px 120px;
       pointer-events: none;
       z-index: -1;
-    }
-
-    @keyframes twinkling {
-      0% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.02); }
-      100% { opacity: 0.5; transform: scale(1); }
+      opacity: 0.6;
     }
 
     .led-marquee {
-      background: linear-gradient(180deg, #111827, #0f172a);
-      padding: 14px 0;
+      background: #111827;
+      padding: 12px 0;
       overflow: hidden;
-      border-bottom: 5px solid #ffeb3b;
-      box-shadow: 0 0 40px #ffeb3b, inset 0 0 25px rgba(255,235,59,0.6);
+      border-bottom: 3px solid #ffeb3b;
+      box-shadow: 0 4px 20px rgba(255,235,59,0.2);
       position: relative;
       z-index: 10;
-      display: flex;
-      align-items: center;
     }
 
+    /* Tối ưu Marquee: Sử dụng translate3d để kích hoạt GPU */
     .marquee-content {
       display: inline-block;
       white-space: nowrap;
       font-family: ui-monospace, monospace;
-      font-size: clamp(16px, 4.5vw, 20px);
+      font-size: clamp(14px, 4vw, 18px);
       font-weight: 800;
       color: #ffeb3b;
-      text-shadow: 
-        0 0 12px #fff,
-        0 0 25px #ffeb3b,
-        0 0 50px #ffeb3b,
-        0 0 70px #67e8f9;
       padding-left: 100%;
-      animation: marquee 20s linear infinite;
-      letter-spacing: 4px;
+      animation: marquee 25s linear infinite;
+      letter-spacing: 2px;
+      will-change: transform;
     }
 
     .marquee-content a {
       color: #67e8f9;
-      text-decoration: underline wavy #fff176;
-      animation: pulseGlow 1.5s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { text-shadow: 0 0 10px #67e8f9; }
-      100% { text-shadow: 0 0 30px #67e8f9; }
+      text-decoration: underline;
     }
 
     @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-100%); }
-    }
-
-    .led-marquee::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      animation: scanline 1.8s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes scanline {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(300%); }
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-100%, 0, 0); }
     }
 
     .card {
-      width: 100%;
-      max-width: 660px;
-      margin: 20px auto;
+      width: 92%;
+      max-width: 600px;
+      margin: 30px auto;
       background: var(--card-bg);
-      padding: 42px 34px;
-      border-radius: 28px;
-      box-shadow: 
-        0 25px 60px rgba(0,0,0,0.7),
-        0 0 40px rgba(255,235,59,0.35),
-        inset 0 3px 0 rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,235,59,0.5);
+      padding: 35px 25px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,235,59,0.3);
       text-align: center;
-      backdrop-filter: blur(18px);
-      animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, glowPulse 2s infinite alternate;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      /* Giảm bớt animation cardPop phức tạp */
+      animation: cardFadeIn 0.6s ease-out forwards;
     }
 
-    @keyframes glowPulse {
-      0% { box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,235,59,0.35); }
-      100% { box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 60px rgba(255,235,59,0.55); }
-    }
-
-    @keyframes cardPop {
-      from { opacity: 0; transform: scale(0.88) translateY(40px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
-      font-size: clamp(26px, 6vw, 36px);
+      font-size: clamp(24px, 5vw, 32px);
       font-weight: 900;
-      background: linear-gradient(90deg, #fff176, #ffeb3b, #fde047);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffeb3b;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       margin-bottom: 8px;
-      text-shadow: 0 0 40px #ffeb3b;
-      animation: textGlow 1.5s infinite alternate;
-    }
-
-    @keyframes textGlow {
-      0% { text-shadow: 0 0 40px #ffeb3b; }
-      100% { text-shadow: 0 0 60px #ffeb3b; }
     }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 15.5px;
-      margin-bottom: 28px;
-      font-weight: 500;
+      font-size: 15px;
+      margin-bottom: 25px;
     }
 
     .key-container {
-      margin: 26px 0;
+      margin: 20px 0;
     }
 
     .key {
       font-family: ui-monospace, monospace;
-      padding: 22px 26px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 3px dashed var(--gold-primary);
-      border-radius: 18px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px dashed var(--gold-primary);
+      border-radius: 15px;
       word-break: break-all;
-      font-size: clamp(17px, 4.5vw, 21px);
+      font-size: clamp(16px, 4vw, 20px);
       font-weight: 700;
       color: #fff176;
-      letter-spacing: 2.5px;
-      line-height: 1.5;
-      box-shadow: 
-        inset 0 6px 20px rgba(0,0,0,0.8),
-        0 0 25px rgba(255,235,59,0.6);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      animation: keyPulse 2s infinite alternate;
-    }
-
-    @keyframes keyPulse {
-      0% { transform: scale(1); box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 25px rgba(255,235,59,0.6); }
-      100% { transform: scale(1.01); box-shadow: inset 0 6px 20px rgba(0,0,0,0.8), 0 0 40px rgba(255,235,59,0.8); }
-    }
-
-    .key::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-      animation: shine 2.5s infinite;
-    }
-
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 200%; }
-      100% { left: 200%; }
+      letter-spacing: 1.5px;
+      line-height: 1.4;
+      transition: border-color 0.3s;
     }
 
     .loading {
-      animation: shimmer 1.6s infinite linear;
-      color: transparent !important;
-      border-style: solid;
+      color: #666 !important;
     }
 
     .btn-group {
       display: flex;
-      gap: 16px;
-      margin-top: 26px;
+      gap: 12px;
+      margin-top: 20px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .btn {
-      padding: 16px 32px;
-      border-radius: 16px;
+      padding: 14px 28px;
+      border-radius: 12px;
       font-weight: 700;
-      font-size: 16px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 15px;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 56px;
-      min-width: 170px;
+      gap: 8px;
+      min-height: 50px;
+      min-width: 160px;
       text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      animation: btnBounce 1.8s infinite alternate;
-    }
-
-    @keyframes btnBounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-4px); }
+      cursor: pointer;
+      border: none;
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, #ffeb3b, #fde047);
+      background: #ffeb3b;
       color: #1e2937;
-      box-shadow: 0 10px 30px rgba(255,235,59,0.5);
     }
 
     .btn.primary:hover {
-      transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(255,235,59,0.7);
+      background: #fdd835;
+      transform: translateY(-2px);
     }
 
     .btn.ghost {
       background: transparent;
       color: #ffeb3b;
-      border: 3px solid #ffeb3b;
+      border: 2px solid #ffeb3b;
     }
 
     .btn.ghost:hover {
-      background: rgba(255,235,59,0.15);
-      transform: translateY(-4px);
+      background: rgba(255,235,59,0.1);
     }
 
     .note {
-      margin-top: 20px;
+      margin-top: 15px;
       color: #94a3b8;
-      font-size: 13.5px;
+      font-size: 13px;
     }
 
-    /* VIP Section */
     .divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ffeb3b, transparent);
-      margin: 40px 0;
-      box-shadow: 0 0 15px #ffeb3b;
-      animation: dividerGlow 2s infinite alternate;
-    }
-
-    @keyframes dividerGlow {
-      0% { box-shadow: 0 0 15px #ffeb3b; }
-      100% { box-shadow: 0 0 30px #ffeb3b; }
+      height: 1px;
+      background: rgba(255,235,59,0.3);
+      margin: 30px 0;
     }
 
     .vip-section h3 {
-      font-size: 21px;
-      font-weight: 900;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #ffeb3b, #fff176);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #ffeb3b;
     }
 
     .pricing-box {
-      background: rgba(0,0,0,0.5);
-      border-radius: 18px;
-      padding: 10px;
-      margin-bottom: 22px;
-      border: 1px solid #ffeb3b33;
-      animation: pricePulse 2.5s infinite alternate;
-    }
-
-    @keyframes pricePulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.02); }
+      background: rgba(0,0,0,0.3);
+      border-radius: 15px;
+      padding: 5px;
+      margin-bottom: 20px;
     }
 
     .price-item {
-      padding: 16px 22px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
-      font-size: 17px;
-      border-bottom: 1px solid #334155;
+      align-items: center;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .price-item:last-child { border-bottom: none; }
-    .price-item strong { color: #fff176; font-size: 21px; }
+    .price-item strong { color: #fff176; font-size: 18px; }
 
     .buy-note {
       color: #34d399;
-      font-weight: 700;
-      font-size: 16px;
-      animation: noteBlink 1s infinite alternate;
+      font-weight: 600;
+      font-size: 15px;
     }
 
-    @keyframes noteBlink {
-      0% { opacity: 1; }
-      100% { opacity: 0.7; }
-    }
-
-    /* Social */
     .social-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 26px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .contact-info {
-      background: rgba(15,23,42,0.8);
-      padding: 22px;
-      border-radius: 18px;
+      background: rgba(15,23,42,0.5);
+      padding: 18px;
+      border-radius: 15px;
       text-align: left;
-      font-size: 15px;
-      border: 1px solid #334155;
-      animation: contactPulse 3s infinite alternate;
-    }
-
-    @keyframes contactPulse {
-      0% { box-shadow: 0 0 10px rgba(103,232,249,0.3); }
-      100% { box-shadow: 0 0 20px rgba(103,232,249,0.5); }
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .contact-info p {
-      margin: 14px 0;
+      margin: 10px 0;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
     }
 
-    /* Canvas Confetti */
-    #confetti-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9999;
+    .contact-info a {
+        color: #67e8f9;
+        text-decoration: none;
     }
 
     /* Responsive */
     @media (max-width: 640px) {
-      .card { margin: 12px 8px; padding: 32px 22px; border-radius: 22px; }
+      .card { margin: 15px auto; padding: 25px 15px; }
       .btn-group { flex-direction: column; }
       .btn { min-width: 100%; }
       .social-grid { grid-template-columns: 1fr; }
@@ -391,15 +269,15 @@
 <body>
   <div class="led-marquee">
     <div class="marquee-content">
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (THÍCH THÌ NHẤP VÀO ĐÂY ĐỂ MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥 
+      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (THÍCH THÌ NHẤP VÀO ĐÂY ĐỂ MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥
+      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥
     </div>
   </div>
 
   <div class="card">
-    <h2>🔑 KEY VIP CỦA BẠN ĐÂY!</h2>
-    <p class="subtitle">Sao chép ngay và dán vào app hoặc bot telegram nhé !!!! </p>
+    <h2>🔑 KEY VIP CỦA BẠN</h2>
+    <p class="subtitle">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
 
     <div class="key-container">
       <div id="key" class="key loading">Đang tải key...</div>
@@ -415,19 +293,19 @@
     <div class="divider"></div>
 
     <div class="vip-section">
-      <h3>👑 ADMIN BÁN KEY MOD SKIN</h3>
+      <h3>👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
       <div class="pricing-box">
-        <div class="price-item"><span>1 Ngày</span><strong>3K</strong></div>
-        <div class="price-item"><span>1 Tuần</span><strong>15K</strong></div>
-        <div class="price-item"><span>1 Tháng</span><strong>40K</strong></div>
+        <div class="price-item"><span>1 Ngày</span><strong>5K</strong></div>
+        <div class="price-item"><span>3 Ngày</span><strong>10K</strong></div>
+        <div class="price-item"><span>7 Ngày</span><strong>20K</strong></div>
+        <div class="price-item"><span>30 Ngày</span><strong>69K</strong></div>
       </div>
-      <p class="buy-note">🛒 Inbox ngay để mua key chính chủ!</p>
+      <p class="buy-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
     </div>
 
     <div class="social-grid">
-      <a href="https://discord.gg/8QDp3tTwjT" target="_blank" class="btn" style="background:#5865F2;color:#fff;">👾 Discord Server</a>
-      <a href="https://t.me/pixelhudmods_vietnam" target="_blank" class="btn" style="background:#0088cc;color:#fff;">✈️ Telegram Channel</a>
-      <a href="https://t.me/PixelHudMods" target="_blank" class="btn" style="background:#0088cc;color:#fff;grid-column:1/-1;">💬 Telegram Chat Group</a>
+      <a href="https://discord.gg/tDqDJakGZy" target="_blank" class="btn" style="background:#5865F2;color:#fff;grid-column:1/-1;">🤖 MUA KEY DISCORD - /start tại bot-cmd</a>
+      <a href="https://t.me/pixelhudmodsV1_bot" target="_blank" class="btn" style="background:#0088cc;color:#fff;grid-column:1/-1;">🤖 MUA KEY TELEGRAM BOT - TỰ ĐỘNG</a>
     </div>
 
     <div class="contact-info">
@@ -437,75 +315,7 @@
     </div>
   </div>
 
-  <!-- CANVAS CONFETTI -->
-  <canvas id="confetti-canvas"></canvas>
-
   <script>
-    // ====================== CONFETTI SIÊU ĐẸP ======================
-    const canvas = document.getElementById('confetti-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particles = [];
-    const colors = ['#ffeb3b', '#fff176', '#67e8f9', '#a5f3fc', '#34d399'];
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height - canvas.height;
-        this.size = Math.random() * 12 + 6;
-        this.speed = Math.random() * 6 + 4;
-        this.angle = Math.random() * 360;
-        this.rotation = Math.random() * 0.1 - 0.05;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
-      }
-      update() {
-        this.y += this.speed;
-        this.angle += this.rotation;
-        this.speed *= 0.99;
-      }
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.fillStyle = this.color;
-        if (this.shape === 'rect') {
-          ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size*1.6);
-        } else {
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size/2, 0, Math.PI*2);
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-    }
-
-    function launchConfetti(count = 180) {
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animateConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles = particles.filter(p => p.y < canvas.height + 50);
-      
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-      }
-      
-      if (particles.length > 0) requestAnimationFrame(animateConfetti);
-    }
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // ====================== MAIN SCRIPT ======================
     function getQueryParam(name) {
       return new URLSearchParams(window.location.search).get(name);
     }
@@ -535,22 +345,16 @@
         try {
           await navigator.clipboard.writeText(keyParam);
           
-          // NỔ CONFETTI + hiệu ứng nút
-          launchConfetti(250);
-          animateConfetti();
-
           const originalHTML = copyBtn.innerHTML;
           copyBtn.innerHTML = '✅ ĐÃ SAO CHÉP!';
-          copyBtn.style.background = 'linear-gradient(135deg, #34d399, #10b981)';
+          copyBtn.style.background = '#10b981';
           copyBtn.style.color = '#fff';
-          copyBtn.style.transform = 'scale(1.1)';
 
           setTimeout(() => {
             copyBtn.innerHTML = originalHTML;
             copyBtn.style.background = '';
             copyBtn.style.color = '';
-            copyBtn.style.transform = '';
-          }, 2400);
+          }, 2000);
 
         } catch(e) {
           const range = document.createRange();
