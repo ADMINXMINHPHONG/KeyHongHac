@@ -2,575 +2,342 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔑 Nhận Key VIP — PixelHud Mods</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Shop Key Mod Skin Free Fire uy tín, giao key tự động 24/24, an toàn không ban. App Skin Tools V7 No Ban ADR FF X FF MAX">
+    <title>Nhận Key VIP — PixelHud Mods</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-dark: #0a0b10;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --primary: #6366f1;
+            --primary-hover: #818cf8;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gold: #f59e0b;
+            --radius: 16px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.4);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         
-        /* Animated Gradient Background */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483, #7209b7);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: #fff;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at 20% 10%, #1e1b4b 0%, var(--bg-dark) 50%);
+            color: var(--text-main);
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 16px;
+            line-height: 1.5;
             overflow-x: hidden;
             position: relative;
         }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
 
-        /* Particle Background */
-        #particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+        /* Floating Particles */
+        #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: rgba(255,255,255,0.6);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
+            position: absolute; width: 4px; height: 4px; background: rgba(255,255,255,0.4);
+            border-radius: 50%; animation: drift 10s infinite linear;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        @keyframes drift {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateY(-80px) scale(1); opacity: 0; }
         }
 
-        /* Container with Glassmorphism */
+        /* Main Container */
         .container {
-            max-width: 650px;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                        0 0 60px rgba(102, 126, 234, 0.3);
-            position: relative;
-            z-index: 1;
-            animation: slideUp 0.8s ease-out;
+            max-width: 680px; margin: 0 auto; background: var(--bg-card);
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-glass); border-radius: var(--radius);
+            box-shadow: var(--shadow-card); padding: 24px; position: relative; z-index: 1;
+            animation: fadeInUp 0.6s ease-out;
         }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Neon Banner */
+        /* Banner */
         .banner {
-            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
-            background-size: 200% 200%;
-            animation: neonPulse 3s ease-in-out infinite, gradientShift 5s ease infinite;
-            padding: 18px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
-            box-shadow: 0 0 20px rgba(255, 0, 110, 0.6),
-                        0 0 40px rgba(131, 56, 236, 0.4);
-            position: relative;
-            overflow: hidden;
-            line-height: 1.4;
+            background: linear-gradient(135deg, #7c3aed, #db2777);
+            padding: 16px; border-radius: 12px; text-align: center; font-weight: 700;
+            line-height: 1.6; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+            position: relative; overflow: hidden; margin-bottom: 20px;
         }
-        
+        .banner a { color: #fff; text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 3px; }
         .banner::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shine 3s infinite;
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transform: translateX(-100%); animation: shimmer 3s infinite;
         }
-        
-        @keyframes neonPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(131, 56, 236, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(255, 0, 110, 0.9), 0 0 60px rgba(131, 56, 236, 0.7); }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
+        @keyframes shimmer { to { transform: translateX(100%); } }
 
         /* Product Link Card */
         .product-link {
-            display: block;
-            background: linear-gradient(135deg, #00b894, #00cec9, #0984e3);
-            background-size: 200% 200%;
-            animation: gradientShift 4s ease infinite;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.4);
-            position: relative;
-            overflow: hidden;
-            line-height: 1.3;
+            display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #059669, #0284c7);
+            padding: 14px 16px; border-radius: 12px; color: #fff; text-decoration: none;
+            font-weight: 600; margin-bottom: 18px; transition: var(--transition);
+            box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35); position: relative;
         }
-        
-        .product-link:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 184, 148, 0.7);
-        }
-        
-        .product-link::after {
-            content: '🔗';
-            position: absolute;
-            right: 15px;
-            animation: bounce 1s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Key Box with Glow */
-        .key-box {
-            background: rgba(0, 0, 0, 0.35);
-            padding: 25px;
-            border-radius: 16px;
-            margin: 20px 0;
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            animation: floatCard 4s ease-in-out infinite;
-        }
-        
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        
-        .key-box::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #ff006e);
-            background-size: 400% 400%;
-            border-radius: 18px;
-            z-index: -1;
-            animation: gradientShift 3s ease infinite;
-            filter: blur(8px);
-            opacity: 0.7;
-        }
-
-        /* Typing Key Display */
-        #keyDisplay {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 15px 0;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: glowPulse 2s ease-in-out infinite;
-            word-break: break-all;
-        }
-        
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(102, 126, 234, 0.9); }
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            background: #fff;
-            animation: blink 1s infinite;
-            margin-left: 3px;
-        }
-        
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Animated Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 14px 28px;
-            text-decoration: none;
-            border-radius: 50px;
-            margin: 8px 5px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn:hover::before { left: 100%; }
-        
-        .btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.7);
-        }
-        
-        .btn:active { transform: translateY(-1px) scale(0.98); }
-        
-        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752C4); box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4); }
-        .btn-discord:hover { box-shadow: 0 20px 40px rgba(88, 101, 242, 0.7); }
-        
-        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4); }
-        .btn-telegram:hover { box-shadow: 0 20px 40px rgba(0, 136, 204, 0.7); }
-        
-        .btn-zalo { background: linear-gradient(135deg, #0068FF, #0047B3); }
-        
-        .btn-group { background: linear-gradient(135deg, #e84393, #fd79a8); box-shadow: 0 10px 30px rgba(232, 67, 147, 0.4); }
-        .btn-group:hover { box-shadow: 0 20px 40px rgba(232, 67, 147, 0.7); }
-
-        /* Price Tags with Pop Effect */
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .price-tag {
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.3);
-            animation: popIn 0.4s ease backwards;
-        }
-        
-        .price-tag:nth-child(1) { animation-delay: 0.1s; }
-        .price-tag:nth-child(2) { animation-delay: 0.2s; }
-        .price-tag:nth-child(3) { animation-delay: 0.3s; }
-        .price-tag:nth-child(4) { animation-delay: 0.4s; }
-        
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .price-tag:hover {
-            transform: scale(1.1) rotate(2deg);
-            background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.2));
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        
-        .price-tag span { color: #feca57; font-size: 18px; }
+        .product-link:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.5); }
+        .product-link .icon { font-size: 24px; }
+        .product-link .text { flex: 1; }
 
         /* Trust Badges */
         .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin: 15px 0;
-            font-size: 12px;
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px;
         }
-        
-        .trust-badge {
-            background: rgba(0, 184, 148, 0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            border: 1px solid #00b894;
-            animation: pulse 2s infinite;
+        .badge {
+            background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 12px; border-radius: 99px; font-size: 12px; color: #6ee7b7;
+            animation: pulseBadge 2s infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(0, 184, 148, 0); }
+        @keyframes pulseBadge { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.3)} 50%{box-shadow:0 0 0 6px rgba(16,185,129,0)} }
+
+        /* Key Section */
+        .key-section {
+            background: rgba(0,0,0,0.25); border: 1px solid var(--border-glass);
+            border-radius: 14px; padding: 20px; text-align: center; margin-bottom: 20px;
         }
+        .key-box {
+            background: rgba(255,255,255,0.06); border-radius: 10px; padding: 14px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px;
+            letter-spacing: 1.5px; min-height: 48px; display: flex; align-items: center;
+            justify-content: center; margin: 12px 0; box-shadow: inset 0 0 12px rgba(255,255,255,0.05);
+        }
+        .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent-cyan); margin-left: 4px; animation: blink 0.9s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 20px; border-radius: 99px; font-weight: 600; text-decoration: none;
+            border: none; cursor: pointer; transition: var(--transition); position: relative;
+            overflow: hidden; font-size: 14px;
+        }
+        .btn::before {
+            content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%); transition: transform 0.4s;
+        }
+        .btn:hover::before { transform: translateX(100%); }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent-pink)); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
+        .btn-telegram { background: #0088cc; color: #fff; box-shadow: 0 6px 16px rgba(0, 136, 204, 0.35); }
+        .btn-discord { background: #5865f2; color: #fff; box-shadow: 0 6px 16px rgba(88, 101, 242, 0.35); }
+        .btn-group { background: linear-gradient(135deg, #e11d48, #f43f5e); color: #fff; }
+
+        /* Pricing Grid */
+        .pricing-title { text-align: center; margin: 24px 0 12px; font-size: 18px; font-weight: 700; }
+        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 8px; }
+        .price-card {
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border-glass);
+            border-radius: 10px; padding: 12px 10px; text-align: center; transition: var(--transition);
+            animation: popIn 0.4s ease backwards;
+        }
+        .price-card:nth-child(1){animation-delay:0.05s} .price-card:nth-child(2){animation-delay:0.1s}
+        .price-card:nth-child(3){animation-delay:0.15s} .price-card:nth-child(4){animation-delay:0.2s}
+        @keyframes popIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+        .price-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); }
+        .price-time { font-size: 13px; color: var(--text-muted); }
+        .price-cost { font-size: 18px; font-weight: 800; color: var(--gold); margin-top: 4px; }
+        .price-note { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+
+        /* Action Buttons */
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
+        .actions .btn { flex: 1 1 140px; }
 
         /* CTV Section */
         .ctv-section {
-            background: linear-gradient(135deg, rgba(232, 67, 147, 0.2), rgba(253, 121, 168, 0.1));
-            padding: 15px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 1px dashed #e84393;
-            animation: fadeIn 1s ease 0.3s backwards;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1), rgba(244, 63, 94, 0.05));
+            border: 1px dashed rgba(244, 63, 94, 0.4); padding: 16px; border-radius: 14px;
+            text-align: center; margin-bottom: 20px; animation: fadeIn 0.6s ease 0.2s backwards;
         }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        .ctv-section h4 { margin-bottom: 6px; }
+        .ctv-section p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
 
-        /* Contact Info */
-        .contact-info {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 14px;
-            animation: fadeIn 1s ease 0.5s backwards;
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-glass); padding-top: 16px; text-align: center;
+            font-size: 14px; color: var(--text-muted); animation: fadeIn 0.8s ease 0.4s backwards;
         }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .contact-info a {
-            color: #feca57;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
+        .footer a { color: var(--gold); text-decoration: none; position: relative; }
+        .footer a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px;
+            background: var(--gold); transition: width 0.25s;
         }
-        
-        .contact-info a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0;
-            width: 0; height: 2px;
-            background: #feca57;
-            transition: width 0.3s ease;
-        }
-        
-        .contact-info a:hover::after { width: 100%; }
-        .contact-info a:hover { color: #fff; text-shadow: 0 0 10px #feca57; }
+        .footer a:hover::after { width: 100%; }
+        .footer a:hover { color: #fff; }
 
-        /* Confetti Effect */
+        /* Confetti */
         .confetti {
-            position: fixed;
-            width: 10px; height: 10px;
-            pointer-events: none;
-            z-index: 1000;
-            animation: confettiFall 3s ease-out forwards;
+            position: fixed; width: 8px; height: 8px; pointer-events: none; z-index: 1000;
+            animation: drop 2s ease-out forwards;
         }
-        
-        @keyframes confettiFall {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+        @keyframes drop {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Loading Spinner */
-        .spinner {
-            width: 40px; height: 40px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top-color: #feca57;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 10px auto;
-        }
-        
-        @keyframes spin { to { transform: rotate(360deg); } }
-
         /* Responsive */
         @media (max-width: 600px) {
-            .container { padding: 20px 15px; margin: 10px; }
-            .btn { padding: 12px 20px; font-size: 14px; margin: 5px 3px; }
-            .price-tag { padding: 8px 15px; font-size: 13px; }
-            .banner { font-size: 14px; }
+            .container { padding: 18px 14px; margin: 8px; }
+            .btn { padding: 11px 16px; font-size: 13px; }
+            .price-grid { grid-template-columns: 1fr 1fr; }
+            .product-link { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
-
-        /* Utility */
-        .text-center { text-align: center; }
-        .mb-2 { margin-bottom: 15px; }
-        a { color: inherit; }
     </style>
 </head>
 <body>
-    <!-- Particle Background -->
     <div id="particles"></div>
 
-    <div class="container">
-        <!-- Updated Banner -->
-        <div class="banner text-center">
-            🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24!<br>
-            ✅ Tự động 100% | 🛡️ Đảm bảo uy tín | 🔒 Không khoá acc
-        </div>
+    <main class="container">
+        <header class="banner">
+            🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24!
+        </header>
 
-        <!-- Updated Product Link -->
         <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" 
-           class="product-link" target="_blank">
-           🛒 WEBSITE MUA KEY <a>
-        <!-- Trust Badges -->
+           class="product-link" target="_blank" rel="noopener noreferrer">
+            <span class="icon">🛒</span>
+            <span class="text">WEBSITE MUA KEY APP MOD SKIN FREE FIRE<br><span style="font-weight:400; opacity:0.9; font-size:13px;">APP SKIN TOOLS V7 - NO BAN ADR FF X FF MAX</span></span>
+        </a>
+
         <div class="trust-badges">
-            <span class="trust-badge">✅ Uy tín 100%</span>
-            <span class="trust-badge">🔒 An toàn tuyệt đối</span>
-            <span class="trust-badge">⚡ Giao key ngay</span>
-            <span class="trust-badge">🎁 Hỗ trợ 24/7</span>
+            <span class="badge">✅ Tự động 100%</span>
+            <span class="badge">🛡️ Đảm bảo uy tín</span>
+            <span class="badge">🔒 Không khoá acc</span>
+            <span class="badge">⚡ Giao key ngay</span>
         </div>
 
-        <!-- Key Display Area -->
-        <div class="key-box">
-            <h3 class="text-center">🔑 KEY VIP CỦA BẠN</h3>
-            <p class="text-center mb-2" style="opacity: 0.9;">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
-            
-            <div id="keyDisplay">
-                <span id="keyText"></span><span class="cursor">|</span>
+        <section class="key-section">
+            <h3>🔑 KEY VIP CỦA BẠN</h3>
+            <p style="font-size:14px; opacity:0.85; margin:8px 0;">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
+            <div class="key-box">
+                <span id="keyText"></span><span class="cursor"></span>
             </div>
-            
-            <div class="text-center">
-                <button class="btn" onclick="copyKey()">📋 SAO CHÉP KEY</button>
-            </div>
-            <p class="text-center" style="font-size: 12px; opacity: 0.7; margin-top: 10px;">
-                💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động
-            </p>
+            <button class="btn btn-primary" onclick="copyKey()" id="copyBtn">📋 SAO CHÉP KEY</button>
+            <p style="font-size:12px; opacity:0.65; margin-top:10px;">💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
+        </section>
+
+        <div style="text-align:center; margin-bottom:18px;">
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener">💬 MỞ TELEGRAM BOT</a>
         </div>
 
-        <!-- Telegram Bot Button -->
-        <div class="text-center">
-            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank">
-                💬 MỞ TELEGRAM BOT
-            </a>
+        <h3 class="pricing-title">👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
+        <div class="price-grid">
+            <div class="price-card"><div class="price-time">1 Ngày</div><div class="price-cost">5K</div></div>
+            <div class="price-card"><div class="price-time">3 Ngày</div><div class="price-cost">10K</div></div>
+            <div class="price-card"><div class="price-time">7 Ngày</div><div class="price-cost">20K</div></div>
+            <div class="price-card"><div class="price-time">30 Ngày</div><div class="price-cost">69K</div></div>
+        </div>
+        <p class="price-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
+
+        <div class="actions">
+            <a href="https://discord.gg/EFvxcQQ8yb" class="btn btn-discord" target="_blank" rel="noopener noreferrer">🤖 MUA KEY DISCORD</a>
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener noreferrer">🤖 MUA KEY TELEGRAM</a>
         </div>
 
-        <!-- Pricing Section -->
-        <div class="text-center" style="margin: 25px 0;">
-            <h4>👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h4>
-            <div class="price-container">
-                <div class="price-tag">⏱️ 1 Ngày <span>5K</span></div>
-                <div class="price-tag">📅 3 Ngày <span>10K</span></div>
-                <div class="price-tag">🗓️ 7 Ngày <span>20K</span></div>
-                <div class="price-tag">🔥 30 Ngày <span>69K</span></div>
-            </div>
-            <p style="font-size: 13px; opacity: 0.85; margin-top: 12px;">
-                ⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!
-            </p>
-        </div>
+        <section class="ctv-section">
+            <h4>🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h4>
+            <p>🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần</p>
+            <!-- ⚠️ THAY LINK GROUP CỦA BẠN VÀO DÒNG DƯỚI -->
+            <a href="https://t.me/your_ctv_group_link" class="btn btn-group" target="_blank" rel="noopener noreferrer">👥 THAM GIA GROUP CTV NGAY</a>
+        </section>
 
-        <!-- Purchase Buttons -->
-        <div class="text-center">
-            <a href="https://discord.gg/EFvxcQQ8yb" class="btn btn-discord" target="_blank">
-                🤖 MUA KEY DISCORD
-            </a>
-            <br>
-            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank">
-                🤖 MUA KEY TELEGRAM BOT
-            </a>
-        </div>
-
-        <!-- CTV Recruitment Section -->
-        <div class="ctv-section text-center">
-            <h4 style="margin-bottom: 10px;">🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h4>
-            <p style="font-size: 13px; margin-bottom: 12px; opacity: 0.95;">
-                🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>
-                💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần
-            </p>
-            <!-- Thay link group của bạn vào href bên dưới -->
-            <a href="https://t.me/pixelhudmods_vietnam" class="btn btn-group" target="_blank">
-                👥 THAM GIA GROUP CTV NGAY
-            </a>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="contact-info text-center">
+        <footer class="footer">
             <p>📞 Zalo: <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
-            <p>✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+            <p style="margin:6px 0;">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
             <p>👾 Discord Admin: @honghac</p>
-        </div>
-    </div>
+        </footer>
+    </main>
 
     <script>
-        // === PARTICLE BACKGROUND ===
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
-                container.appendChild(particle);
+        // === Particles ===
+        (function initParticles() {
+            const c = document.getElementById('particles');
+            for(let i=0; i<35; i++){
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random()*100 + '%';
+                p.style.animationDelay = Math.random()*8 + 's';
+                p.style.animationDuration = (5 + Math.random()*5) + 's';
+                c.appendChild(p);
             }
-        }
-        createParticles();
+        })();
 
-        // === TYPING EFFECT FOR KEY ===
+        // === Typing Key ===
         const keyText = document.getElementById('keyText');
-        const fullKey = 'VIP-8X9K-2M4P-7QW1'; // Thay bằng key thật từ API
-        let charIndex = 0;
-        
+        const fullKey = 'VIP-8X9K-2M4P-7QW1'; // 🔧 Thay bằng API key thật
+        let idx = 0;
         function typeKey() {
-            if (charIndex < fullKey.length) {
-                keyText.textContent += fullKey.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeKey, 80);
+            if(idx < fullKey.length){
+                keyText.textContent += fullKey[idx];
+                idx++;
+                setTimeout(typeKey, 70);
             } else {
                 document.querySelector('.cursor').style.display = 'none';
             }
         }
-        setTimeout(typeKey, 1000);
+        setTimeout(typeKey, 900);
 
-        // === COPY KEY WITH CONFETTI ===
+        // === Copy Key ===
         function copyKey() {
             const key = keyText.textContent;
-            if (key) {
-                navigator.clipboard.writeText(key).then(() => {
-                    alert('✅ Đã sao chép key thành công! 🎉');
-                    createConfetti();
-                }).catch(() => {
-                    alert('❌ Lỗi khi sao chép. Vui lòng copy thủ công.');
-                });
-            } else {
-                alert('⏳ Vui lòng chờ key được tải...');
+            if(!key || key.length < 5){
+                alert('⏳ Vui lòng chờ hệ thống sinh key...');
+                return;
             }
-        }
-
-        // === CONFETTI EFFECT ===
-        function createConfetti() {
-            const colors = ['#ff006e', '#8338ec', '#3a86ff', '#00b894', '#feca57', '#ff6b6b'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confetti.style.width = (5 + Math.random() * 10) + 'px';
-                confetti.style.height = confetti.style.width;
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 3000);
-            }
-        }
-
-        // === HOVER EFFECTS ===
-        document.querySelectorAll('.btn, .product-link').forEach(el => {
-            el.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.2s ease';
+            const btn = document.getElementById('copyBtn');
+            const original = btn.textContent;
+            
+            navigator.clipboard.writeText(key).then(()=>{
+                btn.textContent = '✅ ĐÃ COPY!';
+                btn.style.background = '#059669';
+                setTimeout(()=>{
+                    btn.textContent = original;
+                    btn.style.background = '';
+                }, 2000);
+                spawnConfetti();
+            }).catch(()=>{
+                // Fallback iOS/Android cũ
+                const ta = document.createElement('textarea');
+                ta.value = key; ta.style.position='fixed'; ta.style.opacity='0';
+                document.body.appendChild(ta); ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.textContent = '✅ ĐÃ COPY!';
+                setTimeout(()=> btn.textContent = original, 2000);
+                spawnConfetti();
             });
-        });
+        }
 
-        // === AUTO SCROLL TO KEY ON LOAD ===
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.key-box').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
-            }, 2000);
+        // === Confetti ===
+        function spawnConfetti(){
+            const colors = ['#f59e0b','#ec4899','#06b6d4','#10b981','#8b5cf6'];
+            for(let i=0; i<30; i++){
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random()*100 + 'vw';
+                c.style.background = colors[Math.floor(Math.random()*colors.length)];
+                c.style.borderRadius = Math.random()>0.5 ? '50%' : '2px';
+                c.style.width = (5 + Math.random()*6) + 'px';
+                c.style.height = c.style.width;
+                c.style.animationDelay = Math.random()*0.3 + 's';
+                document.body.appendChild(c);
+                setTimeout(()=>c.remove(), 2200);
+            }
+        }
+
+        // === Smooth Scroll to Key ===
+        window.addEventListener('load', ()=>{
+            setTimeout(()=>{
+                document.querySelector('.key-section').scrollIntoView({behavior:'smooth', block:'center'});
+            }, 1600);
         });
     </script>
 </body>
