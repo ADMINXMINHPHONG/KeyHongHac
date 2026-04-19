@@ -1,371 +1,577 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Nhận Key VIP — PixelHud Mods</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔑 Nhận Key VIP — PixelHud Mods</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Animated Gradient Background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483, #7209b7);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  <style>
-    :root {
-      --gold-primary: #ffeb3b;
-      --gold-hover: #fdd835;
-      --neon-gold: #fff176;
-      --neon-cyan: #67e8f9;
-      --bg-dark: #0a0f1c;
-      --card-bg: rgba(15, 23, 42, 0.95);
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-    }
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      font-family: 'Poppins', system-ui, sans-serif;
-      padding: 0;
-      margin: 0;
-      background: radial-gradient(circle at 50% 20%, #1e3a8a 0%, #020617 70%);
-      color: var(--text-main);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
+        /* Container with Glassmorphism */
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                        0 0 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    /* Tối ưu Background: Loại bỏ animation twinkling và scale gây lag */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(circle, rgba(255,235,59,0.08) 1px, transparent 1px),
-        radial-gradient(circle, rgba(103,232,249,0.05) 1px, transparent 1px);
-      background-size: 80px 80px, 120px 120px;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.6;
-    }
+        /* Neon Banner */
+        .banner {
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+            background-size: 200% 200%;
+            animation: neonPulse 3s ease-in-out infinite, gradientShift 5s ease infinite;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.6),
+                        0 0 40px rgba(131, 56, 236, 0.4);
+            position: relative;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes neonPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(131, 56, 236, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 110, 0.9), 0 0 60px rgba(131, 56, 236, 0.7); }
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
 
-    .led-marquee {
-      background: #111827;
-      padding: 12px 0;
-      overflow: hidden;
-      border-bottom: 3px solid #ffeb3b;
-      box-shadow: 0 4px 20px rgba(255,235,59,0.2);
-      position: relative;
-      z-index: 10;
-    }
+        /* Product Link Card */
+        .product-link {
+            display: block;
+            background: linear-gradient(135deg, #00b894, #00cec9, #0984e3);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.4);
+            position: relative;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+        
+        .product-link:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 184, 148, 0.7);
+        }
+        
+        .product-link::after {
+            content: '🔗';
+            position: absolute;
+            right: 15px;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
 
-    /* Tối ưu Marquee: Sử dụng translate3d để kích hoạt GPU */
-    .marquee-content {
-      display: inline-block;
-      white-space: nowrap;
-      font-family: ui-monospace, monospace;
-      font-size: clamp(14px, 4vw, 18px);
-      font-weight: 800;
-      color: #ffeb3b;
-      padding-left: 100%;
-      animation: marquee 25s linear infinite;
-      letter-spacing: 2px;
-      will-change: transform;
-    }
+        /* Key Box with Glow */
+        .key-box {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+        
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .key-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #ff006e);
+            background-size: 400% 400%;
+            border-radius: 18px;
+            z-index: -1;
+            animation: gradientShift 3s ease infinite;
+            filter: blur(8px);
+            opacity: 0.7;
+        }
 
-    .marquee-content a {
-      color: #67e8f9;
-      text-decoration: underline;
-    }
+        /* Typing Key Display */
+        #keyDisplay {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: glowPulse 2s ease-in-out infinite;
+            word-break: break-all;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(102, 126, 234, 0.9); }
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background: #fff;
+            animation: blink 1s infinite;
+            margin-left: 3px;
+        }
+        
+        @keyframes blink { 50% { opacity: 0; } }
 
-    @keyframes marquee {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(-100%, 0, 0); }
-    }
+        /* Animated Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 8px 5px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before { left: 100%; }
+        
+        .btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.7);
+        }
+        
+        .btn:active { transform: translateY(-1px) scale(0.98); }
+        
+        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752C4); box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4); }
+        .btn-discord:hover { box-shadow: 0 20px 40px rgba(88, 101, 242, 0.7); }
+        
+        .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4); }
+        .btn-telegram:hover { box-shadow: 0 20px 40px rgba(0, 136, 204, 0.7); }
+        
+        .btn-zalo { background: linear-gradient(135deg, #0068FF, #0047B3); }
+        
+        .btn-group { background: linear-gradient(135deg, #e84393, #fd79a8); box-shadow: 0 10px 30px rgba(232, 67, 147, 0.4); }
+        .btn-group:hover { box-shadow: 0 20px 40px rgba(232, 67, 147, 0.7); }
 
-    .card {
-      width: 92%;
-      max-width: 600px;
-      margin: 30px auto;
-      background: var(--card-bg);
-      padding: 35px 25px;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,235,59,0.3);
-      text-align: center;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      /* Giảm bớt animation cardPop phức tạp */
-      animation: cardFadeIn 0.6s ease-out forwards;
-    }
+        /* Price Tags with Pop Effect */
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: popIn 0.4s ease backwards;
+        }
+        
+        .price-tag:nth-child(1) { animation-delay: 0.1s; }
+        .price-tag:nth-child(2) { animation-delay: 0.2s; }
+        .price-tag:nth-child(3) { animation-delay: 0.3s; }
+        .price-tag:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .price-tag:hover {
+            transform: scale(1.1) rotate(2deg);
+            background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.2));
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .price-tag span { color: #feca57; font-size: 18px; }
 
-    @keyframes cardFadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        
+        .trust-badge {
+            background: rgba(0, 184, 148, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #00b894;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(0, 184, 148, 0); }
+        }
 
-    h2 {
-      font-size: clamp(24px, 5vw, 32px);
-      font-weight: 900;
-      color: #ffeb3b;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
+        /* CTV Section */
+        .ctv-section {
+            background: linear-gradient(135deg, rgba(232, 67, 147, 0.2), rgba(253, 121, 168, 0.1));
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px dashed #e84393;
+            animation: fadeIn 1s ease 0.3s backwards;
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-bottom: 25px;
-    }
+        /* Contact Info */
+        .contact-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+            animation: fadeIn 1s ease 0.5s backwards;
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .contact-info a {
+            color: #feca57;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .contact-info a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: #feca57;
+            transition: width 0.3s ease;
+        }
+        
+        .contact-info a:hover::after { width: 100%; }
+        .contact-info a:hover { color: #fff; text-shadow: 0 0 10px #feca57; }
 
-    .key-container {
-      margin: 20px 0;
-    }
+        /* Confetti Effect */
+        .confetti {
+            position: fixed;
+            width: 10px; height: 10px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: confettiFall 3s ease-out forwards;
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
 
-    .key {
-      font-family: ui-monospace, monospace;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px dashed var(--gold-primary);
-      border-radius: 15px;
-      word-break: break-all;
-      font-size: clamp(16px, 4vw, 20px);
-      font-weight: 700;
-      color: #fff176;
-      letter-spacing: 1.5px;
-      line-height: 1.4;
-      transition: border-color 0.3s;
-    }
+        /* Loading Spinner */
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: #feca57;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-    .loading {
-      color: #666 !important;
-    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 20px 15px; margin: 10px; }
+            .btn { padding: 12px 20px; font-size: 14px; margin: 5px 3px; }
+            .price-tag { padding: 8px 15px; font-size: 13px; }
+            .banner { font-size: 14px; }
+        }
 
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 50px;
-      min-width: 160px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn.primary {
-      background: #ffeb3b;
-      color: #1e2937;
-    }
-
-    .btn.primary:hover {
-      background: #fdd835;
-      transform: translateY(-2px);
-    }
-
-    .btn.ghost {
-      background: transparent;
-      color: #ffeb3b;
-      border: 2px solid #ffeb3b;
-    }
-
-    .btn.ghost:hover {
-      background: rgba(255,235,59,0.1);
-    }
-
-    .note {
-      margin-top: 15px;
-      color: #94a3b8;
-      font-size: 13px;
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(255,235,59,0.3);
-      margin: 30px 0;
-    }
-
-    .vip-section h3 {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 15px;
-      color: #ffeb3b;
-    }
-
-    .pricing-box {
-      background: rgba(0,0,0,0.3);
-      border-radius: 15px;
-      padding: 5px;
-      margin-bottom: 20px;
-    }
-
-    .price-item {
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .price-item:last-child { border-bottom: none; }
-    .price-item strong { color: #fff176; font-size: 18px; }
-
-    .buy-note {
-      color: #34d399;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .social-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      background: rgba(15,23,42,0.5);
-      padding: 18px;
-      border-radius: 15px;
-      text-align: left;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .contact-info p {
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .contact-info a {
-        color: #67e8f9;
-        text-decoration: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .card { margin: 15px auto; padding: 25px 15px; }
-      .btn-group { flex-direction: column; }
-      .btn { min-width: 100%; }
-      .social-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        /* Utility */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 15px; }
+        a { color: inherit; }
+    </style>
 </head>
 <body>
-  <div class="led-marquee">
-    <div class="marquee-content">
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥
+    <!-- Particle Background -->
+    <div id="particles"></div>
+
+    <div class="container">
+        <!-- Updated Banner -->
+        <div class="banner text-center">
+            🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24!<br>
+            ✅ Tự động 100% | 🛡️ Đảm bảo uy tín | 🔒 Không khoá acc
+        </div>
+
+        <!-- Updated Product Link -->
+        <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" 
+           class="product-link" target="_blank">
+           🛒 WEBSITE MUA KEY <a>
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <span class="trust-badge">✅ Uy tín 100%</span>
+            <span class="trust-badge">🔒 An toàn tuyệt đối</span>
+            <span class="trust-badge">⚡ Giao key ngay</span>
+            <span class="trust-badge">🎁 Hỗ trợ 24/7</span>
+        </div>
+
+        <!-- Key Display Area -->
+        <div class="key-box">
+            <h3 class="text-center">🔑 KEY VIP CỦA BẠN</h3>
+            <p class="text-center mb-2" style="opacity: 0.9;">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
+            
+            <div id="keyDisplay">
+                <span id="keyText"></span><span class="cursor">|</span>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn" onclick="copyKey()">📋 SAO CHÉP KEY</button>
+            </div>
+            <p class="text-center" style="font-size: 12px; opacity: 0.7; margin-top: 10px;">
+                💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động
+            </p>
+        </div>
+
+        <!-- Telegram Bot Button -->
+        <div class="text-center">
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank">
+                💬 MỞ TELEGRAM BOT
+            </a>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="text-center" style="margin: 25px 0;">
+            <h4>👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h4>
+            <div class="price-container">
+                <div class="price-tag">⏱️ 1 Ngày <span>5K</span></div>
+                <div class="price-tag">📅 3 Ngày <span>10K</span></div>
+                <div class="price-tag">🗓️ 7 Ngày <span>20K</span></div>
+                <div class="price-tag">🔥 30 Ngày <span>69K</span></div>
+            </div>
+            <p style="font-size: 13px; opacity: 0.85; margin-top: 12px;">
+                ⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!
+            </p>
+        </div>
+
+        <!-- Purchase Buttons -->
+        <div class="text-center">
+            <a href="https://discord.gg/EFvxcQQ8yb" class="btn btn-discord" target="_blank">
+                🤖 MUA KEY DISCORD
+            </a>
+            <br>
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank">
+                🤖 MUA KEY TELEGRAM BOT
+            </a>
+        </div>
+
+        <!-- CTV Recruitment Section -->
+        <div class="ctv-section text-center">
+            <h4 style="margin-bottom: 10px;">🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h4>
+            <p style="font-size: 13px; margin-bottom: 12px; opacity: 0.95;">
+                🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>
+                💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần
+            </p>
+            <!-- Thay link group của bạn vào href bên dưới -->
+            <a href="https://t.me/pixelhudmods_vietnam" class="btn btn-group" target="_blank">
+                👥 THAM GIA GROUP CTV NGAY
+            </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info text-center">
+            <p>📞 Zalo: <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
+            <p>✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+            <p>👾 Discord Admin: @honghac</p>
+        </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>🔑 KEY VIP CỦA BẠN</h2>
-    <p class="subtitle">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
-
-    <div class="key-container">
-      <div id="key" class="key loading">Đang tải key...</div>
-      
-      <div class="btn-group">
-        <button id="copyBtn" class="btn primary">📋 SAO CHÉP KEY</button>
-        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 MỞ TELEGRAM BOT</a>
-      </div>
-    </div>
-
-    <p class="note">Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
-
-    <div class="divider"></div>
-
-    <div class="vip-section">
-      <h3>👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
-      <div class="pricing-box">
-        <div class="price-item"><span>1 Ngày</span><strong>5K</strong></div>
-        <div class="price-item"><span>3 Ngày</span><strong>10K</strong></div>
-        <div class="price-item"><span>7 Ngày</span><strong>20K</strong></div>
-        <div class="price-item"><span>30 Ngày</span><strong>69K</strong></div>
-      </div>
-      <p class="buy-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
-    </div>
-
-    <div class="social-grid">
-      <a href="https://discord.gg/tDqDJakGZy" target="_blank" class="btn" style="background:#5865F2;color:#fff;grid-column:1/-1;">🤖 MUA KEY DISCORD - /start ở bot chat rồi nhắn riêng với bot</a>
-      <a href="https://t.me/pixelhudmodsV1_bot" target="_blank" class="btn" style="background:#0088cc;color:#fff;grid-column:1/-1;">🤖 MUA KEY TELEGRAM BOT - TỰ ĐỘNG</a>
-    </div>
-
-    <div class="contact-info">
-      <p>📞 <strong>Zalo:</strong> <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
-      <p>✈️ <strong>Tele Admin:</strong> <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
-      <p>👾 <strong>Discord Admin:</strong> <span style="color:#67e8f9;">@honghac.</span></p>
-    </div>
-  </div>
-
-  <script>
-    function getQueryParam(name) {
-      return new URLSearchParams(window.location.search).get(name);
-    }
-
-    (function() {
-      const keyParam = getQueryParam('key') || getQueryParam('KEY') || getQueryParam('k');
-      const keyEl = document.getElementById('key');
-      const copyBtn = document.getElementById('copyBtn');
-      const openTg = document.getElementById('openTg');
-      const BOT_USERNAME = "pixelhudmodsV1_bot";
-
-      if (!keyParam) {
-        keyEl.textContent = '❌ Không tìm thấy key!';
-        keyEl.classList.remove('loading');
-        copyBtn.disabled = true;
-        openTg.style.display = 'none';
-        return;
-      }
-
-      keyEl.textContent = keyParam;
-      keyEl.classList.remove('loading');
-      openTg.href = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(keyParam)}`;
-
-      copyBtn.addEventListener('click', async () => {
-        if (copyBtn.disabled) return;
-
-        try {
-          await navigator.clipboard.writeText(keyParam);
-          
-          const originalHTML = copyBtn.innerHTML;
-          copyBtn.innerHTML = '✅ ĐÃ SAO CHÉP!';
-          copyBtn.style.background = '#10b981';
-          copyBtn.style.color = '#fff';
-
-          setTimeout(() => {
-            copyBtn.innerHTML = originalHTML;
-            copyBtn.style.background = '';
-            copyBtn.style.color = '';
-          }, 2000);
-
-        } catch(e) {
-          const range = document.createRange();
-          range.selectNodeContents(keyEl);
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(range);
-          alert('⚠️ Copy thủ công nhé!\nChạm giữ vào key để copy.');
+    <script>
+        // === PARTICLE BACKGROUND ===
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                container.appendChild(particle);
+            }
         }
-      });
-    })();
-  </script>
+        createParticles();
+
+        // === TYPING EFFECT FOR KEY ===
+        const keyText = document.getElementById('keyText');
+        const fullKey = 'VIP-8X9K-2M4P-7QW1'; // Thay bằng key thật từ API
+        let charIndex = 0;
+        
+        function typeKey() {
+            if (charIndex < fullKey.length) {
+                keyText.textContent += fullKey.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeKey, 80);
+            } else {
+                document.querySelector('.cursor').style.display = 'none';
+            }
+        }
+        setTimeout(typeKey, 1000);
+
+        // === COPY KEY WITH CONFETTI ===
+        function copyKey() {
+            const key = keyText.textContent;
+            if (key) {
+                navigator.clipboard.writeText(key).then(() => {
+                    alert('✅ Đã sao chép key thành công! 🎉');
+                    createConfetti();
+                }).catch(() => {
+                    alert('❌ Lỗi khi sao chép. Vui lòng copy thủ công.');
+                });
+            } else {
+                alert('⏳ Vui lòng chờ key được tải...');
+            }
+        }
+
+        // === CONFETTI EFFECT ===
+        function createConfetti() {
+            const colors = ['#ff006e', '#8338ec', '#3a86ff', '#00b894', '#feca57', '#ff6b6b'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.width = (5 + Math.random() * 10) + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // === HOVER EFFECTS ===
+        document.querySelectorAll('.btn, .product-link').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.2s ease';
+            });
+        });
+
+        // === AUTO SCROLL TO KEY ON LOAD ===
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.key-box').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
-
