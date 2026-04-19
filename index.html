@@ -1,371 +1,658 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Nhận Key VIP — PixelHud Mods</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="PixelHud Mods - Shop Key Mod Skin Free Fire uy tín, giao key tự động 24/24">
+    <title>🔑 PixelHud Mods - Nhận Key VIP</title>
+    <style>
+        :root {
+            --bg-base: #0a0b12;
+            --bg-surface: rgba(24, 26, 38, 0.85);
+            --bg-surface-2: rgba(32, 35, 52, 0.9);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-focus: rgba(99, 102, 241, 0.6);
+            
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.45);
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --accent-purple: #8b5cf6;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            
+            --shadow-sm: 0 4px 14px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 35px rgba(0,0,0,0.45);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+            
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-full: 999px;
+            
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-  <style>
-    :root {
-      --gold-primary: #ffeb3b;
-      --gold-hover: #fdd835;
-      --neon-gold: #fff176;
-      --neon-cyan: #67e8f9;
-      --bg-dark: #0a0f1c;
-      --card-bg: rgba(15, 23, 42, 0.95);
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: 
+                radial-gradient(ellipse at 15% 15%, rgba(99,102,241,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 85%, rgba(236,72,153,0.14) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.08) 0%, transparent 70%),
+                var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 18px 14px;
+            line-height: 1.55;
+            overflow-x: hidden;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      font-family: 'Poppins', system-ui, sans-serif;
-      padding: 0;
-      margin: 0;
-      background: radial-gradient(circle at 50% 20%, #1e3a8a 0%, #020617 70%);
-      color: var(--text-main);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
+        /* Animated Background */
+        .bg-animated {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139,92,246,0.1) 0%, transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(245,158,11,0.08) 0%, transparent 45%);
+            animation: bgFloat 25s ease-in-out infinite;
+        }
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(1.5%, -1%) scale(1.015); }
+            50% { transform: translate(-1%, 1.5%) scale(0.99); }
+            75% { transform: translate(1%, 1%) scale(1.01); }
+        }
 
-    /* Tối ưu Background: Loại bỏ animation twinkling và scale gây lag */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(circle, rgba(255,235,59,0.08) 1px, transparent 1px),
-        radial-gradient(circle, rgba(103,232,249,0.05) 1px, transparent 1px);
-      background-size: 80px 80px, 120px 120px;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.6;
-    }
+        /* Particles */
+        #particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+        .particle {
+            position: absolute; width: 3px; height: 3px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 75%);
+            border-radius: 50%; animation: particleFloat 14s infinite linear;
+            opacity: 0; filter: blur(0.3px);
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            12% { opacity: 1; }
+            88% { opacity: 1; }
+            100% { transform: translateY(-80px) scale(1); opacity: 0; }
+        }
 
-    .led-marquee {
-      background: #111827;
-      padding: 12px 0;
-      overflow: hidden;
-      border-bottom: 3px solid #ffeb3b;
-      box-shadow: 0 4px 20px rgba(255,235,59,0.2);
-      position: relative;
-      z-index: 10;
-    }
+        /* Main Container */
+        .container {
+            max-width: 680px; margin: 0 auto;
+            background: var(--bg-surface);
+            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+            padding: 26px 22px;
+            position: relative; z-index: 2;
+            animation: slideIn 0.55s var(--ease);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(22px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
-    /* Tối ưu Marquee: Sử dụng translate3d để kích hoạt GPU */
-    .marquee-content {
-      display: inline-block;
-      white-space: nowrap;
-      font-family: ui-monospace, monospace;
-      font-size: clamp(14px, 4vw, 18px);
-      font-weight: 800;
-      color: #ffeb3b;
-      padding-left: 100%;
-      animation: marquee 25s linear infinite;
-      letter-spacing: 2px;
-      will-change: transform;
-    }
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, rgba(124,58,237,0.92), rgba(219,39,119,0.92));
+            padding: 17px 19px; border-radius: var(--radius-md);
+            text-align: center; font-weight: 700; line-height: 1.6;
+            box-shadow: 0 10px 32px rgba(124, 58, 237, 0.42);
+            position: relative; overflow: hidden; margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .banner a {
+            color: #fff; text-decoration: none;
+            border-bottom: 2px dashed rgba(255,255,255,0.65);
+            padding-bottom: 2px; transition: all 0.22s;
+        }
+        .banner a:hover { 
+            border-bottom-style: solid; 
+            text-shadow: 0 0 14px rgba(255,255,255,0.85);
+        }
+        .banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+            transform: translateX(-100%); animation: shimmer 2.8s infinite;
+        }
+        @keyframes shimmer { to { transform: translateX(100%); } }
 
-    .marquee-content a {
-      color: #67e8f9;
-      text-decoration: underline;
-    }
+        /* Product Link */
+        .product-link {
+            display: flex; align-items: center; gap: 13px;
+            background: linear-gradient(135deg, #059669, #0284c7, #06b6d4);
+            padding: 15px 17px; border-radius: var(--radius-md);
+            color: #fff; text-decoration: none; font-weight: 650;
+            margin-bottom: 19px; transition: all 0.28s var(--ease);
+            box-shadow: 0 8px 26px rgba(5, 150, 105, 0.42);
+            position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.12);
+        }
+        .product-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 38px rgba(5, 150, 105, 0.62);
+        }
+        .product-link .icon { 
+            font-size: 25px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25));
+            animation: iconFloat 2.2s ease-in-out infinite;
+        }
+        @keyframes iconFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        .product-link .text { flex: 1; line-height: 1.38; }
+        .product-link .text small { 
+            display: block; font-weight: 450; opacity: 0.94; font-size: 12.5px; margin-top: 3px;
+        }
 
-    @keyframes marquee {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(-100%, 0, 0); }
-    }
+        /* Trust Badges */
+        .trust-badges {
+            display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+            margin-bottom: 22px; padding: 0 3px;
+        }
+        .badge {
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.38);
+            padding: 6.5px 13px; border-radius: var(--radius-full);
+            font-size: 11.5px; font-weight: 650; color: #6ee7b7;
+            display: inline-flex; align-items: center; gap: 4.5px;
+            animation: badgeIn 0.38s var(--ease-bounce) backwards;
+            transition: all 0.22s var(--ease);
+        }
+        .badge:nth-child(1){animation-delay:0.04s} .badge:nth-child(2){animation-delay:0.09s}
+        .badge:nth-child(3){animation-delay:0.14s} .badge:nth-child(4){animation-delay:0.19s}
+        @keyframes badgeIn { from{opacity:0;transform:scale(0.82)} to{opacity:1;transform:scale(1)} }
+        .badge:hover {
+            background: rgba(16, 185, 129, 0.26);
+            box-shadow: 0 5px 16px rgba(16, 185, 129, 0.32);
+            transform: translateY(-2.5px);
+        }
 
-    .card {
-      width: 92%;
-      max-width: 600px;
-      margin: 30px auto;
-      background: var(--card-bg);
-      padding: 35px 25px;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,235,59,0.3);
-      text-align: center;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      /* Giảm bớt animation cardPop phức tạp */
-      animation: cardFadeIn 0.6s ease-out forwards;
-    }
+        /* Key Section */
+        .key-section {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 21px 19px; text-align: center;
+            margin-bottom: 21px;
+            transition: border-color 0.28s, box-shadow 0.28s;
+        }
+        .key-section:focus-within { 
+            border-color: var(--border-focus); 
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+        
+        .key-section h3 {
+            font-size: 17.5px; font-weight: 750; margin-bottom: 7px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .key-section p {
+            font-size: 13.5px; color: var(--text-secondary); margin-bottom: 13px;
+        }
+        
+        .key-box {
+            background: linear-gradient(135deg, rgba(28,30,44,0.95), rgba(22,24,36,0.98));
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 15px 18px; margin: 13px 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 16.5px; letter-spacing: 1.1px;
+            min-height: 50px; display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+            word-break: break-all; position: relative;
+        }
+        .key-box::before {
+            content: ''; position: absolute; inset: 0;
+            border-radius: inherit; padding: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--accent-cyan), transparent);
+            background-size: 300% 100%;
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0.6; animation: borderGlow 3.5s linear infinite;
+        }
+        @keyframes borderGlow { to { background-position: 300% 0; } }
+        
+        .key-text { color: var(--text-primary); font-weight: 650; }
+        .key-text.loading { color: var(--text-muted); font-style: italic; }
+        
+        .cursor {
+            display: inline-block; width: 2px; height: 1.15em;
+            background: var(--accent-cyan); margin-left: 4px;
+            animation: blink 0.85s step-end infinite;
+            vertical-align: middle; border-radius: 1px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-    @keyframes cardFadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Premium Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8.5px; padding: 12.5px 23px; border-radius: var(--radius-full);
+            font-weight: 700; font-size: 13.5px; text-decoration: none;
+            border: none; cursor: pointer; position: relative;
+            overflow: hidden; transition: all 0.24s var(--ease);
+            will-change: transform, box-shadow;
+        }
+        .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
+        
+        .btn::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+            transform: translateX(-100%); transition: transform 0.48s;
+        }
+        .btn:hover::before { transform: translateX(100%); }
+        .btn:active { transform: scale(0.975); }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+            color: #fff; box-shadow: 0 6px 22px var(--primary-glow);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 11px 34px var(--primary-glow);
+            transform: translateY(-2.5px);
+        }
+        
+        .btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: #fff; box-shadow: 0 6px 22px rgba(0, 136, 204, 0.38);
+        }
+        .btn-telegram:hover {
+            box-shadow: 0 11px 34px rgba(0, 136, 204, 0.58);
+            transform: translateY(-2.5px);
+        }
+        
+        .btn-discord {
+            background: linear-gradient(135deg, #5865f2, #4752c4);
+            color: #fff; box-shadow: 0 6px 22px rgba(88, 101, 242, 0.38);
+        }
+        .btn-discord:hover {
+            box-shadow: 0 11px 34px rgba(88, 101, 242, 0.58);
+            transform: translateY(-2.5px);
+        }
+        
+        .btn-group {
+            background: linear-gradient(135deg, #e11d48, #f43f5e);
+            color: #fff; box-shadow: 0 6px 22px rgba(225, 29, 72, 0.38);
+        }
+        .btn-group:hover {
+            box-shadow: 0 11px 34px rgba(225, 29, 72, 0.58);
+            transform: translateY(-2.5px);
+        }
 
-    h2 {
-      font-size: clamp(24px, 5vw, 32px);
-      font-weight: 900;
-      color: #ffeb3b;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
+        /* Pricing */
+        .pricing-title {
+            text-align: center; margin: 26px 0 13px;
+            font-size: 18.5px; font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold), #fbbf24);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .price-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 11px; margin-bottom: 9px;
+        }
+        .price-card {
+            background: rgba(30, 32, 48, 0.75);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 13.5px 11px; text-align: center;
+            transition: all 0.24s var(--ease);
+            animation: priceIn 0.36s var(--ease-bounce) backwards;
+            position: relative; overflow: hidden;
+        }
+        .price-card::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(245,158,11,0.12), transparent 65%);
+            opacity: 0; transition: opacity 0.28s;
+        }
+        .price-card:hover {
+            background: rgba(40, 43, 61, 0.9);
+            border-color: var(--accent-gold);
+            transform: translateY(-4.5px);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.42);
+        }
+        .price-card:hover::after { opacity: 1; }
+        .price-card:nth-child(1){animation-delay:0.04s}
+        .price-card:nth-child(2){animation-delay:0.09s}
+        .price-card:nth-child(3){animation-delay:0.14s}
+        .price-card:nth-child(4){animation-delay:0.19s}
+        @keyframes priceIn { from{opacity:0;transform:scale(0.91)} to{opacity:1;transform:scale(1)} }
+        
+        .price-time { font-size: 12.5px; color: var(--text-secondary); font-weight: 550; }
+        .price-cost {
+            font-size: 19.5px; font-weight: 800; color: var(--accent-gold);
+            margin-top: 4.5px; text-shadow: 0 0 16px rgba(245,158,11,0.42);
+        }
+        
+        .price-note {
+            text-align: center; font-size: 12.5px; color: var(--text-muted);
+            margin-bottom: 20px; padding: 0 7px;
+        }
 
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-bottom: 25px;
-    }
+        /* Actions */
+        .actions {
+            display: flex; flex-wrap: wrap; gap: 13px; justify-content: center;
+            margin-bottom: 23px;
+        }
+        .actions .btn { flex: 1 1 140px; min-width: 135px; }
 
-    .key-container {
-      margin: 20px 0;
-    }
+        /* CTV Section */
+        .ctv-section {
+            background: linear-gradient(135deg, rgba(225,29,72,0.14), rgba(244,63,94,0.07));
+            border: 1px dashed rgba(244, 63, 94, 0.48);
+            padding: 17px 16px; border-radius: var(--radius-md);
+            text-align: center; margin-bottom: 23px;
+            animation: fadeIn 0.55s ease 0.12s backwards;
+        }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:translateY(0)} }
+        
+        .ctv-section h4 {
+            margin-bottom: 7.5px; font-size: 16.5px; font-weight: 750;
+            color: #fda4af;
+        }
+        .ctv-section p {
+            font-size: 12.5px; color: var(--text-secondary); margin-bottom: 13px; line-height: 1.48;
+        }
 
-    .key {
-      font-family: ui-monospace, monospace;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px dashed var(--gold-primary);
-      border-radius: 15px;
-      word-break: break-all;
-      font-size: clamp(16px, 4vw, 20px);
-      font-weight: 700;
-      color: #fff176;
-      letter-spacing: 1.5px;
-      line-height: 1.4;
-      transition: border-color 0.3s;
-    }
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 19px; text-align: center;
+            font-size: 13.5px; color: var(--text-muted);
+            animation: fadeIn 0.75s ease 0.28s backwards;
+        }
+        .footer a {
+            color: var(--accent-gold); text-decoration: none;
+            font-weight: 550; position: relative; padding: 2px 0;
+            transition: color 0.2s;
+        }
+        .footer a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--accent-gold);
+            border-radius: 2px; transition: width 0.24s var(--ease);
+        }
+        .footer a:hover { color: #fff; }
+        .footer a:hover::after { width: 100%; }
 
-    .loading {
-      color: #666 !important;
-    }
+        /* Confetti */
+        .confetti {
+            position: fixed; width: 8.5px; height: 8.5px; pointer-events: none;
+            z-index: 1000; animation: confettiFall 2.1s ease-out forwards;
+            border-radius: 2px;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-12px) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg) scale(0.75); opacity: 0; }
+        }
 
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        /* Copy Success */
+        @keyframes successPulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
+            70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .btn-copied {
+            animation: successPulse 0.55s ease-out;
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
 
-    .btn {
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 50px;
-      min-width: 160px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-    }
+        /* Responsive */
+        @media (max-width: 620px) {
+            .container { padding: 21px 17px; margin: 5px; }
+            .banner { padding: 14px 15px; font-size: 13.5px; }
+            .product-link { flex-direction: column; align-items: flex-start; padding: 13.5px; }
+            .product-link .icon { font-size: 23px; }
+            .btn { padding: 11.5px 19px; font-size: 12.5px; }
+            .actions .btn { flex: 1 1 125px; min-width: 120px; }
+            .price-grid { grid-template-columns: 1fr 1fr; }
+            .key-box { font-size: 15.5px; padding: 13.5px 15px; }
+            .trust-badges { gap: 5.5px; }
+            .badge { padding: 5.5px 11px; font-size: 10.5px; }
+        }
 
-    .btn.primary {
-      background: #ffeb3b;
-      color: #1e2937;
-    }
+        @media (max-width: 380px) {
+            .price-grid { grid-template-columns: 1fr; }
+            .actions { gap: 10px; }
+            .actions .btn { flex: 1 1 100%; min-width: 100%; }
+        }
 
-    .btn.primary:hover {
-      background: #fdd835;
-      transform: translateY(-2px);
-    }
-
-    .btn.ghost {
-      background: transparent;
-      color: #ffeb3b;
-      border: 2px solid #ffeb3b;
-    }
-
-    .btn.ghost:hover {
-      background: rgba(255,235,59,0.1);
-    }
-
-    .note {
-      margin-top: 15px;
-      color: #94a3b8;
-      font-size: 13px;
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(255,235,59,0.3);
-      margin: 30px 0;
-    }
-
-    .vip-section h3 {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 15px;
-      color: #ffeb3b;
-    }
-
-    .pricing-box {
-      background: rgba(0,0,0,0.3);
-      border-radius: 15px;
-      padding: 5px;
-      margin-bottom: 20px;
-    }
-
-    .price-item {
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .price-item:last-child { border-bottom: none; }
-    .price-item strong { color: #fff176; font-size: 18px; }
-
-    .buy-note {
-      color: #34d399;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .social-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      background: rgba(15,23,42,0.5);
-      padding: 18px;
-      border-radius: 15px;
-      text-align: left;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .contact-info p {
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .contact-info a {
-        color: #67e8f9;
-        text-decoration: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .card { margin: 15px auto; padding: 25px 15px; }
-      .btn-group { flex-direction: column; }
-      .btn { min-width: 100%; }
-      .social-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        /* Accessibility */
+        .btn:focus-visible, .product-link:focus-visible, a:focus-visible {
+            outline: 2.5px solid var(--primary);
+            outline-offset: 3.5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="led-marquee">
-    <div class="marquee-content">
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      🔥🌟 MUA KEY, MOD, NHẮN BOT TỰ ĐỘNG - DUYỆT TIỀN 24/24! (MUA NGAY: <a href="https://t.me/minhphongxvn" target="_blank">INBOX ADMIN</a> - ƯU ĐÃI VIP, SKIN ĐỈNH CAO, GAME THẢ GA!) 🌟🔥
-    </div>
-  </div>
+    <div class="bg-animated"></div>
+    <div id="particles"></div>
 
-  <div class="card">
-    <h2>🔑 KEY VIP CỦA BẠN</h2>
-    <p class="subtitle">Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
+    <main class="container">
+        <!-- Product Link -->
+        <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" 
+           class="product-link" target="_blank" rel="noopener noreferrer">
+            <span class="icon">🛒</span>
+            <span class="text">
+                WEBSITE MUA KEY APP MOD SKIN FREE FIRE !! 
+                <small>APP SKIN TOOLS V7 - NO BAN ADR FF X FF MAX</small>
+            </span>
+        </a>
 
-    <div class="key-container">
-      <div id="key" class="key loading">Đang tải key...</div>
-      
-      <div class="btn-group">
-        <button id="copyBtn" class="btn primary">📋 SAO CHÉP KEY</button>
-        <a id="openTg" class="btn ghost" target="_blank" rel="noopener">💬 MỞ TELEGRAM BOT</a>
-      </div>
-    </div>
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <span class="badge">✅ Tự động 100%</span>
+            <span class="badge">🛡️ Đảm bảo uy tín</span>
+            <span class="badge">🔒 Không khoá acc</span>
+            <span class="badge">⚡ Giao key ngay</span>
+        </div>
 
-    <p class="note">Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
+        <!-- Key Section -->
+        <section class="key-section">
+            <h3>🔑 KEY VIP CỦA BẠN</h3>
+            <p>Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
+            
+            <div class="key-box">
+                <span id="keyText" class="key-text loading">Đang tải key...</span><span class="cursor"></span>
+            </div>
+            
+            <button class="btn btn-primary" onclick="copyKey()" id="copyBtn" disabled>
+                📋 SAO CHÉP KEY
+            </button>
+            
+            <p style="font-size:11.5px; color:var(--text-muted); margin-top:11px;">
+                💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động
+            </p>
+        </section>
 
-    <div class="divider"></div>
+        <!-- Telegram Bot -->
+        <div style="text-align:center; margin-bottom:19px;">
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener">
+                💬 MỞ TELEGRAM BOT MOD BOM KEO FREE ! <br> ANDROID và IOS !!! 
+            </a>
+        </div>
 
-    <div class="vip-section">
-      <h3>👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
-      <div class="pricing-box">
-        <div class="price-item"><span>1 Ngày</span><strong>5K</strong></div>
-        <div class="price-item"><span>3 Ngày</span><strong>10K</strong></div>
-        <div class="price-item"><span>7 Ngày</span><strong>20K</strong></div>
-        <div class="price-item"><span>30 Ngày</span><strong>69K</strong></div>
-      </div>
-      <p class="buy-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
-    </div>
+        <!-- Pricing -->
+        <h3 class="pricing-title">👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
+        <div class="price-grid">
+            <div class="price-card">
+                <div class="price-time">1 Ngày</div>
+                <div class="price-cost">5K</div>
+            </div>
+            <div class="price-card">
+                <div class="price-time">3 Ngày</div>
+                <div class="price-cost">10K</div>
+            </div>
+            <div class="price-card">
+                <div class="price-time">7 Ngày</div>
+                <div class="price-cost">20K</div>
+            </div>
+            <div class="price-card">
+                <div class="price-time">30 Ngày</div>
+                <div class="price-cost">69K</div>
+            </div>
+        </div>
+        <p class="price-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
 
-    <div class="social-grid">
-      <a href="https://discord.gg/tDqDJakGZy" target="_blank" class="btn" style="background:#5865F2;color:#fff;grid-column:1/-1;">🤖 MUA KEY DISCORD - /start ở bot chat rồi nhắn riêng với bot</a>
-      <a href="https://t.me/pixelhudmodsV1_bot" target="_blank" class="btn" style="background:#0088cc;color:#fff;grid-column:1/-1;">🤖 MUA KEY TELEGRAM BOT - TỰ ĐỘNG</a>
-    </div>
+        <!-- Action Buttons -->
+        <div class="actions">
+            <a href="https://discord.gg/EFvxcQQ8yb" class="btn btn-discord" target="_blank" rel="noopener noreferrer">
+                🤖 MUA KEY DISCORD
+            </a>
+            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                🤖 MUA KEY TELEGRAM
+            </a>
+        </div>
 
-    <div class="contact-info">
-      <p>📞 <strong>Zalo:</strong> <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
-      <p>✈️ <strong>Tele Admin:</strong> <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
-      <p>👾 <strong>Discord Admin:</strong> <span style="color:#67e8f9;">@honghac.</span></p>
-    </div>
-  </div>
+        <!-- CTV Section -->
+        <section class="ctv-section">
+            <h4>🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h4>
+            <p>🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần</p>
+            <!-- ⚠️ THAY LINK GROUP CỦA BẠN -->
+            <a href="https://t.me/your_ctv_group_link" class="btn btn-group" target="_blank" rel="noopener noreferrer">
+                👥 THAM GIA GROUP CTV NGAY
+            </a>
+        </section>
 
-  <script>
-    function getQueryParam(name) {
-      return new URLSearchParams(window.location.search).get(name);
-    }
+        <!-- Footer -->
+        <footer class="footer">
+            <p>📞 Zalo: <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
+            <p style="margin:6.5px 0;">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+            <p>👾 Discord Admin: @honghac</p>
+        </footer>
+    </main>
 
-    (function() {
-      const keyParam = getQueryParam('key') || getQueryParam('KEY') || getQueryParam('k');
-      const keyEl = document.getElementById('key');
-      const copyBtn = document.getElementById('copyBtn');
-      const openTg = document.getElementById('openTg');
-      const BOT_USERNAME = "pixelhudmodsV1_bot";
+    <script>
+        // === Particles ===
+        (function initParticles() {
+            const c = document.getElementById('particles');
+            for(let i = 0; i < 32; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 11 + 's';
+                p.style.animationDuration = (9 + Math.random() * 7) + 's';
+                p.style.opacity = 0.35 + Math.random() * 0.5;
+                c.appendChild(p);
+            }
+        })();
 
-      if (!keyParam) {
-        keyEl.textContent = '❌ Không tìm thấy key!';
-        keyEl.classList.remove('loading');
-        copyBtn.disabled = true;
-        openTg.style.display = 'none';
-        return;
-      }
-
-      keyEl.textContent = keyParam;
-      keyEl.classList.remove('loading');
-      openTg.href = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(keyParam)}`;
-
-      copyBtn.addEventListener('click', async () => {
-        if (copyBtn.disabled) return;
-
-        try {
-          await navigator.clipboard.writeText(keyParam);
-          
-          const originalHTML = copyBtn.innerHTML;
-          copyBtn.innerHTML = '✅ ĐÃ SAO CHÉP!';
-          copyBtn.style.background = '#10b981';
-          copyBtn.style.color = '#fff';
-
-          setTimeout(() => {
-            copyBtn.innerHTML = originalHTML;
-            copyBtn.style.background = '';
-            copyBtn.style.color = '';
-          }, 2000);
-
-        } catch(e) {
-          const range = document.createRange();
-          range.selectNodeContents(keyEl);
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(range);
-          alert('⚠️ Copy thủ công nhé!\nChạm giữ vào key để copy.');
+        // === Extract Key from URL ===
+        function getKeyFromURL() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('key');
+            } catch { return null; }
         }
-      });
-    })();
-  </script>
+
+        // === Typing Animation ===
+        const keyText = document.getElementById('keyText');
+        const copyBtn = document.getElementById('copyBtn');
+        let currentKey = '';
+
+        function typeKey(key) {
+            keyText.classList.remove('loading');
+            keyText.textContent = '';
+            let idx = 0;
+            
+            function type() {
+                if(idx < key.length) {
+                    keyText.textContent += key[idx];
+                    idx++;
+                    setTimeout(type, 42);
+                } else {
+                    document.querySelector('.cursor').style.display = 'none';
+                    copyBtn.disabled = false;
+                    currentKey = key;
+                }
+            }
+            type();
+        }
+
+        // === Page Load ===
+        window.addEventListener('load', () => {
+            const key = getKeyFromURL();
+            
+            if(key && key.trim() !== '') {
+                setTimeout(() => typeKey(key), 650);
+            } else {
+                keyText.textContent = '❌ Không tìm thấy key!';
+                keyText.classList.remove('loading');
+                copyBtn.disabled = true;
+            }
+            
+            setTimeout(() => {
+                document.querySelector('.key-section')?.scrollIntoView({
+                    behavior: 'smooth', block: 'center'
+                });
+            }, 1300);
+        });
+
+        // === Copy Key ===
+        function copyKey() {
+            if(!currentKey || currentKey.length < 5) {
+                alert('⏳ Key chưa sẵn sàng!');
+                return;
+            }
+            
+            const btn = document.getElementById('copyBtn');
+            const originalHTML = btn.innerHTML;
+            
+            navigator.clipboard.writeText(currentKey).then(() => {
+                btn.innerHTML = '✅ ĐÃ COPY!';
+                btn.classList.add('btn-copied');
+                btn.disabled = true;
+                spawnConfetti();
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('btn-copied');
+                    btn.disabled = false;
+                }, 2400);
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = currentKey;
+                ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                
+                btn.innerHTML = '✅ ĐÃ COPY!';
+                btn.classList.add('btn-copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('btn-copied');
+                }, 2400);
+                spawnConfetti();
+            });
+        }
+
+        // === Confetti ===
+        function spawnConfetti() {
+            const colors = ['#f59e0b', '#ec4899', '#06b6d4', '#10b981', '#8b5cf6', '#f43f5e'];
+            for(let i = 0; i < 38; i++) {
+                setTimeout(() => {
+                    const c = document.createElement('div');
+                    c.className = 'confetti';
+                    c.style.left = (Math.random() * 100) + 'vw';
+                    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2.5px';
+                    c.style.width = (5.5 + Math.random() * 7) + 'px';
+                    c.style.height = c.style.width;
+                    c.style.animationDelay = Math.random() * 0.35 + 's';
+                    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 2300);
+                }, i * 28);
+            }
+        }
+    </script>
 </body>
 </html>
-
