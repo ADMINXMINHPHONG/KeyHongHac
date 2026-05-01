@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔑 PixelHud Mods - Nhận Key FREE </title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>🔑 PixelHub Mods - Nhận Key FREE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #f0f7ff;
-            --primary: #6c5ce7;
-            --secondary: #00cec9;
-            --accent: #fdcb6e;
-            --pink: #ff7675;
-            --green: #00b894;
-            --dark: #2d3436;
-            --border: 4px solid var(--dark);
-            --shadow: 8px 8px 0px var(--dark);
-            --shadow-sm: 4px 4px 0px var(--dark);
-            --radius: 20px;
+            --bg-base: #0b0f19;
+            --primary: #00f0ff; /* Neon Cyan */
+            --secondary: #bd00ff; /* Neon Purple */
+            --accent: #fcee0a; /* Cyberpunk Yellow */
+            --pink: #ff003c; /* Neon Red/Pink */
+            --green: #00ffaa;
+            --dark: #05070a;
+            --surface: #151a28;
+            --text-light: #e0e5ec;
+            --border: 2px solid var(--primary);
+            --shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            --shadow-sm: 0 0 8px rgba(0, 240, 255, 0.2);
+            --radius: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,261 +28,255 @@
             font-family: 'Nunito', sans-serif;
             background: var(--bg-base);
             min-height: 100vh;
-            color: var(--dark);
+            color: var(--text-light);
             overflow-x: hidden;
             position: relative;
         }
 
-        /* === ANIMATED BG PATTERN & BLOBS === */
+        /* === ANIMATED BG PATTERN & BLOBS (CYBERPUNK VIBE) === */
         .bg-pattern {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--dark) 1px, transparent 1px);
-            background-size: 25px 25px; opacity: 0.04; pointer-events: none; z-index: 0;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px; pointer-events: none; z-index: 0;
         }
         .bg-blob {
-            position: fixed; border-radius: 50%; filter: blur(60px); opacity: 0.35;
+            position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.15;
             pointer-events: none; will-change: transform; z-index: 0;
         }
         .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); animation: blobFloat 18s infinite alternate ease-in-out; }
-        .blob-2 { bottom: -15%; right: -10%; width: 60vw; height: 60vw; background: var(--pink); animation: blobFloat 22s infinite alternate-reverse ease-in-out; }
-        .blob-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: var(--accent); animation: blobFloat 15s infinite alternate ease-in-out 2s; }
+        .blob-2 { bottom: -15%; right: -10%; width: 60vw; height: 60vw; background: var(--secondary); animation: blobFloat 22s infinite alternate-reverse ease-in-out; }
 
         @keyframes blobFloat {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(40px, -40px) scale(1.15) rotate(15deg); }
         }
 
-        /* === MARQUEE RAINBOW === */
+        /* === MARQUEE HIGH-TECH === */
         .marquee-wrap {
             position: relative; z-index: 2; overflow: hidden;
-            background: var(--dark); padding: 2px; margin-bottom: 25px;
-            box-shadow: var(--shadow-sm);
+            background: var(--dark); border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 15px rgba(0, 240, 255, 0.2); margin-bottom: 25px;
         }
         .marquee-bar {
-            padding: 12px 0; white-space: nowrap; position: relative; z-index: 2;
-            background: linear-gradient(90deg, var(--primary), var(--pink), var(--accent), var(--secondary), var(--primary));
-            background-size: 200% auto; animation: bgShift 4s linear infinite;
+            padding: 10px 0; white-space: nowrap; position: relative; z-index: 2;
         }
         .marquee-content {
-            display: inline-block; font-weight: 900; font-size: 15px; color: #fff;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            display: inline-block; font-weight: 900; font-size: 14px; color: var(--accent);
+            text-shadow: 0 0 5px rgba(252, 238, 10, 0.5);
             animation: marquee 25s linear infinite; padding-right: 50px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .marquee-wrap:hover .marquee-content { animation-play-state: paused; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        @keyframes bgShift { 100% { background-position: -200% center; } }
 
         /* === MAIN CONTAINER === */
         .container {
             position: relative; z-index: 1; max-width: 780px; margin: 0 auto 40px;
-            background: #fff; border: var(--border); border-radius: var(--radius);
+            background: rgba(21, 26, 40, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 240, 255, 0.3); border-radius: var(--radius);
             box-shadow: var(--shadow); padding: 30px 20px;
         }
 
         h1 {
-            text-align: center; font-weight: 900; font-size: 30px; margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--pink), var(--secondary));
+            text-align: center; font-weight: 900; font-size: 28px; margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text; background-clip: text; color: transparent;
-            animation: textShimmer 5s linear infinite alternate;
-            text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
-        @keyframes textShimmer { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(45deg); } }
 
         /* === ENTRANCE ANIMATIONS === */
         .anim-in {
-            opacity: 0; transform: translateY(40px) scale(0.95);
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0; transform: translateY(30px);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0) scale(1); } }
-        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
-        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; } .d5 { animation-delay: 0.5s; } .d6 { animation-delay: 0.6s; }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        .d1 { animation-delay: 0.1s; } .d3 { animation-delay: 0.2s; }
+        .d4 { animation-delay: 0.3s; } .d5 { animation-delay: 0.4s; } .d6 { animation-delay: 0.5s; }
 
-        /* === BUTTONS === */
-        .btn-main {
-            display: block; text-align: center; background: var(--accent);
-            color: var(--dark); padding: 18px; border-radius: 16px;
-            text-decoration: none; margin: 15px 0; font-weight: 900;
-            border: var(--border); box-shadow: var(--shadow);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative; overflow: hidden;
-        }
-        .btn-main::after {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
-            transform: skewX(-25deg); animation: shine 3.5s infinite;
-        }
-        @keyframes shine { 0%, 15% { left: -100%; } 16%, 100% { left: 250%; } }
-        .btn-main:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0px var(--dark); background: #ffeaa7; }
-        .btn-main:active { transform: scale(0.97); }
-
+        /* === FEATURES === */
         .features {
             display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
-            background: #dfe6e9; padding: 18px; border-radius: 14px;
-            border: var(--border); margin-bottom: 25px;
+            padding: 15px; margin-bottom: 25px;
         }
         .features div {
-            background: #fff; padding: 10px 16px; border-radius: 25px;
-            font-weight: 800; border: 3px solid var(--dark);
-            box-shadow: var(--shadow-sm); transition: 0.25s;
+            background: var(--surface); padding: 8px 16px; border-radius: 8px;
+            font-weight: 700; border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--primary); transition: 0.3s;
+            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
         }
-        .features div:hover { transform: rotate(-4deg) scale(1.08) translateY(-5px); background: var(--primary); color: #fff; border-color: #fff; }
+        .features div:hover { 
+            transform: translateY(-3px); 
+            border-color: var(--primary); 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2); 
+            color: #fff; 
+        }
 
-        /* === KEY HOLOGRAPHIC BOX - ULTIMATE === */
+        /* === KEY HOLOGRAPHIC BOX === */
         .key-section {
-            background: linear-gradient(135deg, #a29bfe, var(--primary));
-            color: #fff; padding: 28px 20px; border-radius: var(--radius);
-            border: var(--border); box-shadow: var(--shadow);
+            background: linear-gradient(135deg, rgba(189, 0, 255, 0.1), rgba(0, 240, 255, 0.1));
+            color: #fff; padding: 30px 20px; border-radius: var(--radius);
+            border: 1px solid var(--primary); box-shadow: var(--shadow);
             text-align: center; margin-bottom: 25px; position: relative;
             overflow: hidden;
         }
-        .key-section::before {
-            content: ''; position: absolute; top: -50%; left: -50%;
-            width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent 30%);
-            animation: rotateBg 4s linear infinite; opacity: 0.6;
-        }
-        @keyframes rotateBg { 100% { transform: rotate(360deg); } }
         
         .key-display {
             position: relative; z-index: 2; 
-            background: rgba(0,0,0,0.25);
-            padding: 20px; border-radius: 14px; margin: 18px 0;
-            font-family: 'Courier New', monospace; font-size: 22px; font-weight: 900;
-            letter-spacing: 2px; 
-            border: 3px dashed rgba(255,255,255,0.7);
-            backdrop-filter: blur(6px);
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-            animation: keyGlow 2s ease-in-out infinite alternate;
-            min-height: 60px;
+            background: rgba(5, 7, 10, 0.6);
+            padding: 20px; border-radius: 8px; margin: 20px 0;
+            font-family: 'Courier New', monospace; font-size: 24px; font-weight: 900;
+            letter-spacing: 3px; color: var(--accent);
+            border: 1px dashed var(--primary);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+            animation: neonPulse 2s ease-in-out infinite alternate;
+            min-height: 70px;
             display: flex; align-items: center; justify-content: center;
         }
-        @keyframes keyGlow {
-            0% { box-shadow: 0 0 15px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.2); }
-            100% { box-shadow: 0 0 25px rgba(255,255,255,0.8), inset 0 0 30px rgba(255,255,255,0.4); }
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1); }
+            100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.3); border-color: #fff; }
         }
         .key-display.loading {
-            font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9);
+            font-size: 16px; font-family: 'Nunito', sans-serif; color: var(--primary); letter-spacing: 1px;
             animation: pulseText 1.2s ease-in-out infinite;
         }
-        @keyframes pulseText { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        @keyframes pulseText { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
         .copy-btn {
-            position: relative; z-index: 2; background: #fff; color: var(--primary);
-            border: var(--border); padding: 14px 32px; border-radius: 50px;
-            font-weight: 900; cursor: pointer; box-shadow: var(--shadow-sm);
-            transition: all 0.2s; font-family: 'Nunito', sans-serif; font-size: 16px;
+            position: relative; z-index: 2; background: var(--primary); color: var(--dark);
+            border: none; padding: 14px 35px; border-radius: 8px; text-transform: uppercase;
+            font-weight: 900; cursor: pointer; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s; font-family: 'Orbitron', sans-serif; font-size: 15px;
+            letter-spacing: 1px;
         }
-        .copy-btn:hover { transform: scale(1.05); box-shadow: var(--shadow); background: #f8f9fa; }
-        .copy-btn:active { transform: scale(0.95); box-shadow: 1px 1px 0px var(--dark); }
-        .copy-btn.copied { background: var(--green) !important; color: #fff !important; }
+        .copy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 240, 255, 0.8); background: #fff; }
+        .copy-btn.copied { background: var(--green) !important; color: var(--dark) !important; box-shadow: 0 0 20px rgba(0, 255, 170, 0.6); }
 
-        .telegram-main { background: #0984e3; color: #fff; }
-        .telegram-main:hover { background: #00cec9; }
+        /* === BUTTONS === */
+        .btn-main {
+            display: block; text-align: center; background: transparent;
+            color: #fff; padding: 18px; border-radius: 8px;
+            text-decoration: none; margin: 15px 0; font-weight: 900;
+            border: 1px solid var(--primary); box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+            text-transform: uppercase; letter-spacing: 1px; font-family: 'Orbitron', sans-serif;
+        }
+        .btn-main::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn-main:hover::before { left: 100%; }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1); }
+        
+        .telegram-main { border-color: #0088cc; box-shadow: inset 0 0 10px rgba(0, 136, 204, 0.2); }
+        .telegram-main:hover { box-shadow: 0 0 20px rgba(0, 136, 204, 0.5), inset 0 0 15px rgba(0, 136, 204, 0.3); background: rgba(0, 136, 204, 0.1); }
 
         .ctv-section {
-            background: #ffeaa7; padding: 25px 20px; border-radius: var(--radius);
-            border: var(--border); box-shadow: var(--shadow); text-align: center; margin: 25px 0;
+            background: rgba(252, 238, 10, 0.05); padding: 25px 20px; border-radius: var(--radius);
+            border: 1px solid rgba(252, 238, 10, 0.3); text-align: center; margin: 25px 0;
         }
-        .ctv-section h2 { font-weight: 900; color: #d35400; margin-bottom: 10px; }
+        .ctv-section h2 { font-weight: 900; color: var(--accent); margin-bottom: 10px; font-family: 'Orbitron', sans-serif; }
 
         .contact-info {
-            background: #f5f6fa; padding: 18px; border-radius: 14px;
-            border: var(--border); text-align: center;
+            background: var(--surface); padding: 20px; border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
         }
+        .contact-info p { color: #a0aabf; }
         .contact-info a { color: var(--primary); font-weight: 800; text-decoration: none; transition: 0.2s; }
-        .contact-info a:hover { color: var(--pink); text-decoration: underline; }
+        .contact-info a:hover { color: var(--secondary); text-shadow: 0 0 8px rgba(189, 0, 255, 0.6); }
 
-        /* === CARTOON POPUP ULTIMATE === */
+        /* === MODAL (FIXED SCROLL & NEW UI) === */
         #pricingModal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
-            display: flex; justify-content: center; align-items: center;
+            background: rgba(5, 7, 10, 0.9); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; 
+            align-items: flex-start; /* Fix lỗi không cuộn được: Cho phép nội dung tràn xuống dưới */
+            padding: 40px 15px; /* Thêm padding để có khoảng trống trên/dưới */
+            overflow-y: auto; /* Fix lỗi: Cho phép cuộn dọc nếu nội dung dài hơn màn hình */
             z-index: 99999; opacity: 0; visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.4s ease;
         }
         #pricingModal.show { opacity: 1; visibility: visible; }
 
         .modal-box {
-            background: #fff; border: 5px solid var(--dark); border-radius: 24px;
-            padding: 30px 25px; width: 95%; max-width: 500px;
-            box-shadow: 12px 12px 0px var(--dark), 0 0 40px rgba(108, 92, 231, 0.4);
-            position: relative; transform: scale(0.7) translateY(40px) rotate(-2deg);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: center; overflow: visible;
+            background: var(--surface); border: 2px solid var(--secondary); border-radius: 16px;
+            padding: 35px 25px; width: 100%; max-width: 500px;
+            box-shadow: 0 0 30px rgba(189, 0, 255, 0.3), inset 0 0 20px rgba(189, 0, 255, 0.1);
+            position: relative; transform: translateY(-20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center; margin: auto; /* Căn giữa hoàn hảo khi có flex-start */
         }
-        #pricingModal.show .modal-box { transform: scale(1) translateY(0) rotate(0); }
+        #pricingModal.show .modal-box { transform: translateY(0) scale(1); }
 
         .modal-close {
-            position: absolute; top: -18px; right: -18px;
-            background: var(--pink); color: #fff; width: 45px; height: 45px;
-            border-radius: 50%; border: 4px solid var(--dark);
-            font-size: 24px; font-weight: 900; cursor: pointer;
-            box-shadow: var(--shadow-sm); transition: all 0.3s;
+            position: absolute; top: -15px; right: -15px;
+            background: var(--dark); color: var(--pink); width: 40px; height: 40px;
+            border-radius: 50%; border: 2px solid var(--pink);
+            font-size: 22px; font-weight: 900; cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4); transition: all 0.3s;
             display: flex; align-items: center; justify-content: center; z-index: 10;
         }
-        .modal-close:hover { transform: rotate(180deg) scale(1.15); background: #e17055; }
+        .modal-close:hover { transform: rotate(90deg) scale(1.1); background: var(--pink); color: #fff; box-shadow: 0 0 25px rgba(255, 0, 60, 0.8); }
 
-        .modal-title { font-size: 24px; font-weight: 900; color: var(--dark); margin: 0 0 5px; }
-        .modal-sub { font-size: 14px; color: #636e72; margin-bottom: 20px; font-weight: 800; }
+        .modal-title { font-size: 22px; font-family: 'Orbitron', sans-serif; font-weight: 900; color: #fff; margin: 0 0 10px; text-shadow: 0 0 10px rgba(189, 0, 255, 0.5); }
+        .modal-sub { font-size: 14px; color: #a0aabf; margin-bottom: 25px; }
 
         .pricing-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 25px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px;
         }
         .price-card {
-            background: #f8f9fa; border: 3px solid var(--dark); border-radius: 16px;
-            padding: 16px 10px; cursor: pointer; transition: 0.25s; position: relative;
+            background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            padding: 18px 10px; cursor: pointer; transition: 0.3s; position: relative;
         }
-        .price-card:hover { transform: translateY(-6px) rotate(-3deg); background: #fff; box-shadow: var(--shadow-sm); }
+        .price-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
         .price-card.popular { 
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e); 
-            border-color: #e67e22; box-shadow: var(--shadow-sm); 
+            background: rgba(252, 238, 10, 0.05); 
+            border-color: var(--accent); box-shadow: 0 0 15px rgba(252, 238, 10, 0.2); 
         }
         .price-card .badge {
-            position: absolute; top: -12px; right: -12px;
-            background: var(--pink); color: #fff; font-size: 11px; padding: 5px 10px;
-            border-radius: 20px; border: 3px solid var(--dark); font-weight: 900;
-            box-shadow: 3px 3px 0px var(--dark); animation: bounceBadge 1.5s infinite alternate;
+            position: absolute; top: -10px; right: -10px;
+            background: var(--pink); color: #fff; font-size: 11px; padding: 4px 10px;
+            border-radius: 4px; font-weight: 900; letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.5); animation: pulseBadge 1.5s infinite alternate;
         }
-        @keyframes bounceBadge { 0% { transform: scale(1); } 100% { transform: scale(1.1) rotate(5deg); } }
+        @keyframes pulseBadge { 0% { transform: scale(1); } 100% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 0, 60, 0.8); } }
         
-        .price-card .dur { display: block; font-size: 14px; color: #636e72; font-weight: 800; }
-        .price-card .price { display: block; font-size: 26px; font-weight: 900; color: var(--dark); margin-top: 5px; }
+        .price-card .dur { display: block; font-size: 13px; color: #a0aabf; font-weight: 700; text-transform: uppercase; }
+        .price-card .price { display: block; font-size: 24px; font-weight: 900; color: #fff; margin-top: 5px; font-family: 'Orbitron', sans-serif; }
 
         .buy-options { display: flex; flex-direction: column; gap: 12px; }
-        .cartoon-btn {
+        .cyber-btn {
             display: flex; align-items: center; justify-content: center;
-            padding: 16px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 15px;
-            border: 3px solid var(--dark); box-shadow: var(--shadow-sm);
-            transition: all 0.25s; color: #fff; position: relative; overflow: hidden;
+            padding: 16px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 14px;
+            transition: all 0.3s; color: #fff; position: relative; overflow: hidden;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .cartoon-btn:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0px var(--dark); }
-        .cartoon-btn::after {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg); animation: shine 3s infinite;
-        }
-        .btn-shop { background: var(--green); }
-        .btn-discord { background: #5865F2; }
-        .btn-telegram { background: #0088cc; }
+        .cyber-btn:hover { transform: translateY(-2px); color: #fff; }
+        .btn-shop { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+        .btn-shop:hover { background: rgba(252, 238, 10, 0.1); box-shadow: 0 0 15px rgba(252, 238, 10, 0.4); }
+        .btn-discord { background: transparent; border: 1px solid #5865F2; color: #5865F2; }
+        .btn-discord:hover { background: rgba(88, 101, 242, 0.1); box-shadow: 0 0 15px rgba(88, 101, 242, 0.4); }
+        .btn-telegram { background: transparent; border: 1px solid #0088cc; color: #0088cc; }
+        .btn-telegram:hover { background: rgba(0, 136, 204, 0.1); box-shadow: 0 0 15px rgba(0, 136, 204, 0.4); }
 
-        /* === RESPONSIVE & PREFS === */
+        /* === RESPONSIVE === */
         @media (max-width: 480px) {
-            .container { padding: 20px 15px; margin: 15px auto; }
+            .container { padding: 25px 15px; margin: 15px auto; border-radius: 0; border-left: none; border-right: none; }
             .pricing-grid { grid-template-columns: 1fr; }
-            .modal-box { padding: 25px 18px; }
-            h1 { font-size: 24px; }
-            .marquee-content { font-size: 13px; animation-duration: 18s; }
-            .key-display { font-size: 18px; padding: 16px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            .modal-box { padding: 25px 20px; }
+            h1 { font-size: 22px; }
+            .marquee-content { font-size: 12px; animation-duration: 20s; }
+            .key-display { font-size: 20px; padding: 15px; letter-spacing: 2px; }
         }
     </style>
 </head>
 <body>
     <div class="bg-pattern"></div>
-    <div class="bg-blob blob-1"></div><div class="bg-blob blob-2"></div><div class="bg-blob blob-3"></div>
+    <div class="bg-blob blob-1"></div><div class="bg-blob blob-2"></div>
 
-    <!-- CHẠY CHỮ THÔNG BÁO -->
     <div class="marquee-wrap anim-in">
         <div class="marquee-bar">
             <div class="marquee-content">
@@ -290,49 +286,51 @@
     </div>
 
     <div class="container">
-        <h1 class="anim-in d1">🔑SKIN TOOLS HH V7 - Nhận Key FREE</h1>
+        <h1 class="anim-in d1">🔑 SKIN TOOLS HONG HAC V7<br><span style="font-size: 18px; color: var(--primary);">NHẬN KEY FREE</span></h1>
+        
         <div class="features anim-in d3">
-            <div>✅ Tự động 100%</div>
-            <div>🛡️ Đảm bảo uy tín</div>
-            <div>🔒 Không khoá acc</div>
-            <div>⚡ Giao key ngay</div>
+            <div>✅ AUTO 100%</div>
+            <div>🛡️ UY TÍN</div>
+            <div>🔒 SAFE 100%</div>
+            <div>⚡ INSTANT</div>
         </div>
 
         <div class="key-section anim-in d4">
-            <h2>🔑 KEY VIP CỦA BẠN</h2>
-            <p>Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
-            <div class="key-display loading" id="keyDisplay">⏳ Đang tải key...</div>
-            <button class="copy-btn" id="copyBtn" onclick="copyKey()">📋 SAO CHÉP KEY</button>
-            <p style="margin-top: 14px; font-size: 13px; opacity: 0.9;">💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 20px; letter-spacing: 1px;">SYSTEM_KEY_GENERATOR</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 5px;">Copy và dán vào app hoặc bot telegram</p>
+            <div class="key-display loading" id="keyDisplay">INITIALIZING...</div>
+            <button class="copy-btn" id="copyBtn" onclick="copyKey()">[ COPY KEY ]</button>
+            <p style="margin-top: 15px; font-size: 12px; color: rgba(255,255,255,0.5);">💡 Giữ đè vào key để copy thủ công nếu có lỗi</p>
         </div>
 
         <a href="https://t.me/pixelhudmodsV1_bot" class="btn-main telegram-main anim-in d5">
-            💬 MỞ TELEGRAM BOT MOD BOM KEO FREE !<br>
-            <span style="font-size:14px">ANDROID và IOS !!!</span>
+            💬 MỞ TELEGRAM BOT MOD BOM KEO<br>
+            <span style="font-size:12px; color: rgba(255,255,255,0.6); font-family: 'Nunito', sans-serif;">HỖ TRỢ ANDROID & IOS</span>
         </a>
 
         <div class="ctv-section anim-in d6">
-            <h2>🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h2>
-            <p>🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>
-            💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần</p>
-            <a href="https://t.me/pixelhudmods_vietnam" class="btn-main" style="background:#e17055; margin-top:15px;">
-                👥 THAM GIA GROUP CTV NGAY
+            <h2>🤝 TUYỂN CTV HỆ THỐNG</h2>
+            <p style="color: #a0aabf; font-size: 14px; margin-bottom: 15px;">
+            🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>
+            💰 Chiết khấu cao | 🎁 Thưởng tuần</p>
+            <a href="https://t.me/pixelhudmods_vietnam" class="btn-main" style="border-color: var(--accent); color: var(--accent);">
+                [ THAM GIA GROUP CTV ]
             </a>
         </div>
 
         <div class="contact-info anim-in d6">
             <p>📞 Zalo: <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
-            <p style="margin-top:10px">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
-            <p style="margin-top:10px">👾 Discord Admin: @honghac. ( có dấu chấm ) </p>
+            <p style="margin-top:8px">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+            <p style="margin-top:8px">👾 Discord Admin: <a href="#">@honghac.</a></p>
         </div>
     </div>
 
-    <!-- BANNER POPUP CARTOON ULTIMATE -->
+    <!-- BANNER POPUP -->
     <div id="pricingModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closePriceModal()">×</button>
-            <div class="modal-title">👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</div>
-            <div class="modal-sub">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</div>
+            <div class="modal-title">UPGRADE PREMIUM</div>
+            <div class="modal-sub">⚡ Hệ thống tự động 24/7 - Kích hoạt ngay lập tức</div>
             
             <div class="pricing-grid">
                 <div class="price-card"><span class="dur">1 Ngày</span><span class="price">5K</span></div>
@@ -342,18 +340,17 @@
             </div>
 
             <div class="buy-options">
-                <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" class="cartoon-btn btn-shop">🛒 MUA TẠI SHOP ( AUTO CARD ) </a>
-                <a href="https://discord.gg/EFvxcQQ8yb" class="cartoon-btn btn-discord">🤖 MUA QUA DISCORD BOT ( AUTO BANK ) </a>
-                <a href="https://t.me/pixelhudmodsV1_bot" class="cartoon-btn btn-telegram">✈️ MUA QUA TELEGRAM BOT ( AUTO BANK )</a>
+                <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" class="cyber-btn btn-shop">🛒 WEBSITE SHOP (AUTO CARD)</a>
+                <a href="https://discord.gg/EFvxcQQ8yb" class="cyber-btn btn-discord">🤖 DISCORD BOT (AUTO BANK)</a>
+                <a href="https://t.me/pixelhudmodsV1_bot" class="cyber-btn btn-telegram">✈️ TELEGRAM BOT (AUTO BANK)</a>
             </div>
         </div>
     </div>
 
     <script>
-        // === LOGIC LẤY KEY TỪ URL ===
         function getKeyFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('key'); // Lấy giá trị sau ?key=...
+            return urlParams.get('key'); 
         }
 
         function displayKey() {
@@ -362,60 +359,65 @@
             const key = getKeyFromURL();
             
             if (key && key.trim() !== '') {
-                // Có key hợp lệ
                 keyDisplay.textContent = key;
                 keyDisplay.classList.remove('loading');
                 copyBtn.disabled = false;
                 copyBtn.style.opacity = '1';
             } else {
-                // Không có key
-                keyDisplay.textContent = '❌ Không tìm thấy key trong URL';
+                keyDisplay.textContent = 'ERR: NO_KEY_FOUND';
                 keyDisplay.classList.remove('loading');
                 copyBtn.disabled = true;
-                copyBtn.style.opacity = '0.6';
+                copyBtn.style.opacity = '0.5';
+                copyBtn.style.cursor = 'not-allowed';
             }
         }
 
-        // === POPUP AUTO SHOW ===
+        // Tối ưu Popup Logic: Khóa cuộn trang khi mở Banner
         window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('pricingModal').classList.add('show'), 800);
-            displayKey(); // Hiển thị key khi trang load xong
+            setTimeout(() => {
+                document.getElementById('pricingModal').classList.add('show');
+                document.body.style.overflow = 'hidden'; // Ngăn trang web bên dưới cuộn
+            }, 800);
+            displayKey(); 
         });
         
-        function closePriceModal() { document.getElementById('pricingModal').classList.remove('show'); }
-        document.getElementById('pricingModal').addEventListener('click', (e) => { if (e.target.id === 'pricingModal') closePriceModal(); });
+        function closePriceModal() { 
+            document.getElementById('pricingModal').classList.remove('show'); 
+            document.body.style.overflow = ''; // Mở khóa cuộn trang
+        }
+        
+        document.getElementById('pricingModal').addEventListener('click', (e) => { 
+            if (e.target.id === 'pricingModal') closePriceModal(); 
+        });
 
-        // === COPY KEY LOGIC ===
         function copyKey() {
             const keyDisplay = document.getElementById('keyDisplay');
             const copyBtn = document.getElementById('copyBtn');
             const key = keyDisplay.textContent.trim();
             
-            if (key && !keyDisplay.classList.contains('loading') && !key.startsWith('❌')) {
+            if (key && !keyDisplay.classList.contains('loading') && !key.startsWith('ERR')) {
                 navigator.clipboard.writeText(key).then(() => {
-                    // Hiệu ứng feedback
-                    copyBtn.textContent = '✅ ĐÃ COPY!';
+                    copyBtn.textContent = '[ COPIED SUCCESS ]';
                     copyBtn.classList.add('copied');
                     
                     setTimeout(() => {
-                        copyBtn.textContent = '📋 SAO CHÉP KEY';
+                        copyBtn.textContent = '[ COPY KEY ]';
                         copyBtn.classList.remove('copied');
                     }, 2000);
                 }).catch(() => {
-                    // Fallback cho trình duyệt cũ
                     const ta = document.createElement('textarea');
                     ta.value = key; document.body.appendChild(ta);
                     ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
                     
-                    copyBtn.textContent = '✅ ĐÃ COPY!';
+                    copyBtn.textContent = '[ COPIED SUCCESS ]';
                     copyBtn.classList.add('copied');
                     setTimeout(() => {
-                        copyBtn.textContent = '📋 SAO CHÉP KEY';
+                        copyBtn.textContent = '[ COPY KEY ]';
                         copyBtn.classList.remove('copied');
                     }, 2000);
                 });
             } else {
-                alert('⚠️ Không có key hợp lệ để sao chép!');
+                alert('⚠️ ERROR: Không tìm thấy Key để copy!');
             }
         }
     </script>
