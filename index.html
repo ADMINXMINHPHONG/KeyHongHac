@@ -2,655 +2,420 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="PixelHud Mods - Shop Key Mod Skin Free Fire uy tín, giao key tự động 24/24">
-    <title>🔑 PixelHud Mods - Nhận Key VIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔑 PixelHud Mods - Nhận Key FREE </title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #0a0b12;
-            --bg-surface: rgba(24, 26, 38, 0.85);
-            --bg-surface-2: rgba(32, 35, 52, 0.9);
-            --border-subtle: rgba(255, 255, 255, 0.1);
-            --border-focus: rgba(99, 102, 241, 0.6);
-            
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.45);
-            --accent-pink: #ec4899;
-            --accent-cyan: #06b6d4;
-            --accent-green: #10b981;
-            --accent-gold: #f59e0b;
-            --accent-purple: #8b5cf6;
-            
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --text-muted: #64748b;
-            
-            --shadow-sm: 0 4px 14px rgba(0,0,0,0.3);
-            --shadow-md: 0 10px 35px rgba(0,0,0,0.45);
-            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
-            
-            --radius-sm: 12px;
-            --radius-md: 18px;
-            --radius-lg: 24px;
-            --radius-full: 999px;
-            
-            --ease: cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --bg-base: #f0f7ff;
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent: #fdcb6e;
+            --pink: #ff7675;
+            --green: #00b894;
+            --dark: #2d3436;
+            --border: 4px solid var(--dark);
+            --shadow: 8px 8px 0px var(--dark);
+            --shadow-sm: 4px 4px 0px var(--dark);
+            --radius: 20px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: 
-                radial-gradient(ellipse at 15% 15%, rgba(99,102,241,0.18) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 85%, rgba(236,72,153,0.14) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.08) 0%, transparent 70%),
-                var(--bg-base);
-            color: var(--text-primary);
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-base);
             min-height: 100vh;
-            padding: 18px 14px;
-            line-height: 1.55;
+            color: var(--dark);
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Animated Background */
-        .bg-animated {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(139,92,246,0.1) 0%, transparent 45%),
-                radial-gradient(circle at 80% 70%, rgba(245,158,11,0.08) 0%, transparent 45%);
-            animation: bgFloat 25s ease-in-out infinite;
+        /* === ANIMATED BG PATTERN & BLOBS === */
+        .bg-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--dark) 1px, transparent 1px);
+            background-size: 25px 25px; opacity: 0.04; pointer-events: none; z-index: 0;
         }
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(1.5%, -1%) scale(1.015); }
-            50% { transform: translate(-1%, 1.5%) scale(0.99); }
-            75% { transform: translate(1%, 1%) scale(1.01); }
+        .bg-blob {
+            position: fixed; border-radius: 50%; filter: blur(60px); opacity: 0.35;
+            pointer-events: none; will-change: transform; z-index: 0;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); animation: blobFloat 18s infinite alternate ease-in-out; }
+        .blob-2 { bottom: -15%; right: -10%; width: 60vw; height: 60vw; background: var(--pink); animation: blobFloat 22s infinite alternate-reverse ease-in-out; }
+        .blob-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: var(--accent); animation: blobFloat 15s infinite alternate ease-in-out 2s; }
+
+        @keyframes blobFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.15) rotate(15deg); }
         }
 
-        /* Particles */
-        #particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
-        .particle {
-            position: absolute; width: 3px; height: 3px;
-            background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 75%);
-            border-radius: 50%; animation: particleFloat 14s infinite linear;
-            opacity: 0; filter: blur(0.3px);
+        /* === MARQUEE RAINBOW === */
+        .marquee-wrap {
+            position: relative; z-index: 2; overflow: hidden;
+            background: var(--dark); padding: 2px; margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
         }
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            12% { opacity: 1; }
-            88% { opacity: 1; }
-            100% { transform: translateY(-80px) scale(1); opacity: 0; }
+        .marquee-bar {
+            padding: 12px 0; white-space: nowrap; position: relative; z-index: 2;
+            background: linear-gradient(90deg, var(--primary), var(--pink), var(--accent), var(--secondary), var(--primary));
+            background-size: 200% auto; animation: bgShift 4s linear infinite;
         }
+        .marquee-content {
+            display: inline-block; font-weight: 900; font-size: 15px; color: #fff;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            animation: marquee 25s linear infinite; padding-right: 50px;
+        }
+        .marquee-wrap:hover .marquee-content { animation-play-state: paused; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @keyframes bgShift { 100% { background-position: -200% center; } }
 
-        /* Main Container */
+        /* === MAIN CONTAINER === */
         .container {
-            max-width: 680px; margin: 0 auto;
-            background: var(--bg-surface);
-            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md), var(--shadow-glow);
-            padding: 26px 22px;
-            position: relative; z-index: 2;
-            animation: slideIn 0.55s var(--ease);
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(22px) scale(0.985); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            position: relative; z-index: 1; max-width: 780px; margin: 0 auto 40px;
+            background: #fff; border: var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); padding: 30px 20px;
         }
 
-        /* Banner */
-        .banner {
-            background: linear-gradient(135deg, rgba(124,58,237,0.92), rgba(219,39,119,0.92));
-            padding: 17px 19px; border-radius: var(--radius-md);
-            text-align: center; font-weight: 700; line-height: 1.6;
-            box-shadow: 0 10px 32px rgba(124, 58, 237, 0.42);
-            position: relative; overflow: hidden; margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.18);
+        h1 {
+            text-align: center; font-weight: 900; font-size: 30px; margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--pink), var(--secondary));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: textShimmer 5s linear infinite alternate;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
         }
-        .banner a {
-            color: #fff; text-decoration: none;
-            border-bottom: 2px dashed rgba(255,255,255,0.65);
-            padding-bottom: 2px; transition: all 0.22s;
-        }
-        .banner a:hover { 
-            border-bottom-style: solid; 
-            text-shadow: 0 0 14px rgba(255,255,255,0.85);
-        }
-        .banner::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
-            transform: translateX(-100%); animation: shimmer 2.8s infinite;
-        }
-        @keyframes shimmer { to { transform: translateX(100%); } }
+        @keyframes textShimmer { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(45deg); } }
 
-        /* Product Link */
-        .product-link {
-            display: flex; align-items: center; gap: 13px;
-            background: linear-gradient(135deg, #059669, #0284c7, #06b6d4);
-            padding: 15px 17px; border-radius: var(--radius-md);
-            color: #fff; text-decoration: none; font-weight: 650;
-            margin-bottom: 19px; transition: all 0.28s var(--ease);
-            box-shadow: 0 8px 26px rgba(5, 150, 105, 0.42);
-            position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.12);
+        /* === ENTRANCE ANIMATIONS === */
+        .anim-in {
+            opacity: 0; transform: translateY(40px) scale(0.95);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .product-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 38px rgba(5, 150, 105, 0.62);
-        }
-        .product-link .icon { 
-            font-size: 25px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25));
-            animation: iconFloat 2.2s ease-in-out infinite;
-        }
-        @keyframes iconFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
-        .product-link .text { flex: 1; line-height: 1.38; }
-        .product-link .text small { 
-            display: block; font-weight: 450; opacity: 0.94; font-size: 12.5px; margin-top: 3px;
-        }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0) scale(1); } }
+        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; } .d5 { animation-delay: 0.5s; } .d6 { animation-delay: 0.6s; }
 
-        /* Trust Badges */
-        .trust-badges {
-            display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
-            margin-bottom: 22px; padding: 0 3px;
-        }
-        .badge {
-            background: rgba(16, 185, 129, 0.14);
-            border: 1px solid rgba(16, 185, 129, 0.38);
-            padding: 6.5px 13px; border-radius: var(--radius-full);
-            font-size: 11.5px; font-weight: 650; color: #6ee7b7;
-            display: inline-flex; align-items: center; gap: 4.5px;
-            animation: badgeIn 0.38s var(--ease-bounce) backwards;
-            transition: all 0.22s var(--ease);
-        }
-        .badge:nth-child(1){animation-delay:0.04s} .badge:nth-child(2){animation-delay:0.09s}
-        .badge:nth-child(3){animation-delay:0.14s} .badge:nth-child(4){animation-delay:0.19s}
-        @keyframes badgeIn { from{opacity:0;transform:scale(0.82)} to{opacity:1;transform:scale(1)} }
-        .badge:hover {
-            background: rgba(16, 185, 129, 0.26);
-            box-shadow: 0 5px 16px rgba(16, 185, 129, 0.32);
-            transform: translateY(-2.5px);
-        }
-
-        /* Key Section */
-        .key-section {
-            background: var(--bg-surface-2);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 21px 19px; text-align: center;
-            margin-bottom: 21px;
-            transition: border-color 0.28s, box-shadow 0.28s;
-        }
-        .key-section:focus-within { 
-            border-color: var(--border-focus); 
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-        }
-        
-        .key-section h3 {
-            font-size: 17.5px; font-weight: 750; margin-bottom: 7px;
-            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        
-        .key-section p {
-            font-size: 13.5px; color: var(--text-secondary); margin-bottom: 13px;
-        }
-        
-        .key-box {
-            background: linear-gradient(135deg, rgba(28,30,44,0.95), rgba(22,24,36,0.98));
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 15px 18px; margin: 13px 0;
-            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 16.5px; letter-spacing: 1.1px;
-            min-height: 50px; display: flex; align-items: center; justify-content: center;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
-            word-break: break-all; position: relative;
-        }
-        .key-box::before {
-            content: ''; position: absolute; inset: 0;
-            border-radius: inherit; padding: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--accent-cyan), transparent);
-            background-size: 300% 100%;
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            opacity: 0.6; animation: borderGlow 3.5s linear infinite;
-        }
-        @keyframes borderGlow { to { background-position: 300% 0; } }
-        
-        .key-text { color: var(--text-primary); font-weight: 650; }
-        .key-text.loading { color: var(--text-muted); font-style: italic; }
-        
-        .cursor {
-            display: inline-block; width: 2px; height: 1.15em;
-            background: var(--accent-cyan); margin-left: 4px;
-            animation: blink 0.85s step-end infinite;
-            vertical-align: middle; border-radius: 1px;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Premium Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 8.5px; padding: 12.5px 23px; border-radius: var(--radius-full);
-            font-weight: 700; font-size: 13.5px; text-decoration: none;
-            border: none; cursor: pointer; position: relative;
-            overflow: hidden; transition: all 0.24s var(--ease);
-            will-change: transform, box-shadow;
-        }
-        .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
-        
-        .btn::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
-            transform: translateX(-100%); transition: transform 0.48s;
-        }
-        .btn:hover::before { transform: translateX(100%); }
-        .btn:active { transform: scale(0.975); }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--accent-pink));
-            color: #fff; box-shadow: 0 6px 22px var(--primary-glow);
-        }
-        .btn-primary:hover {
-            box-shadow: 0 11px 34px var(--primary-glow);
-            transform: translateY(-2.5px);
-        }
-        
-        .btn-telegram {
-            background: linear-gradient(135deg, #0088cc, #006699);
-            color: #fff; box-shadow: 0 6px 22px rgba(0, 136, 204, 0.38);
-        }
-        .btn-telegram:hover {
-            box-shadow: 0 11px 34px rgba(0, 136, 204, 0.58);
-            transform: translateY(-2.5px);
-        }
-        
-        .btn-discord {
-            background: linear-gradient(135deg, #5865f2, #4752c4);
-            color: #fff; box-shadow: 0 6px 22px rgba(88, 101, 242, 0.38);
-        }
-        .btn-discord:hover {
-            box-shadow: 0 11px 34px rgba(88, 101, 242, 0.58);
-            transform: translateY(-2.5px);
-        }
-        
-        .btn-group {
-            background: linear-gradient(135deg, #e11d48, #f43f5e);
-            color: #fff; box-shadow: 0 6px 22px rgba(225, 29, 72, 0.38);
-        }
-        .btn-group:hover {
-            box-shadow: 0 11px 34px rgba(225, 29, 72, 0.58);
-            transform: translateY(-2.5px);
-        }
-
-        /* Pricing */
-        .pricing-title {
-            text-align: center; margin: 26px 0 13px;
-            font-size: 18.5px; font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-gold), #fbbf24);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        
-        .price-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 11px; margin-bottom: 9px;
-        }
-        .price-card {
-            background: rgba(30, 32, 48, 0.75);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 13.5px 11px; text-align: center;
-            transition: all 0.24s var(--ease);
-            animation: priceIn 0.36s var(--ease-bounce) backwards;
+        /* === BUTTONS === */
+        .btn-main {
+            display: block; text-align: center; background: var(--accent);
+            color: var(--dark); padding: 18px; border-radius: 16px;
+            text-decoration: none; margin: 15px 0; font-weight: 900;
+            border: var(--border); box-shadow: var(--shadow);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative; overflow: hidden;
         }
-        .price-card::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(245,158,11,0.12), transparent 65%);
-            opacity: 0; transition: opacity 0.28s;
+        .btn-main::after {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            transform: skewX(-25deg); animation: shine 3.5s infinite;
         }
-        .price-card:hover {
-            background: rgba(40, 43, 61, 0.9);
-            border-color: var(--accent-gold);
-            transform: translateY(-4.5px);
-            box-shadow: 0 14px 32px rgba(0,0,0,0.42);
-        }
-        .price-card:hover::after { opacity: 1; }
-        .price-card:nth-child(1){animation-delay:0.04s}
-        .price-card:nth-child(2){animation-delay:0.09s}
-        .price-card:nth-child(3){animation-delay:0.14s}
-        .price-card:nth-child(4){animation-delay:0.19s}
-        @keyframes priceIn { from{opacity:0;transform:scale(0.91)} to{opacity:1;transform:scale(1)} }
-        
-        .price-time { font-size: 12.5px; color: var(--text-secondary); font-weight: 550; }
-        .price-cost {
-            font-size: 19.5px; font-weight: 800; color: var(--accent-gold);
-            margin-top: 4.5px; text-shadow: 0 0 16px rgba(245,158,11,0.42);
-        }
-        
-        .price-note {
-            text-align: center; font-size: 12.5px; color: var(--text-muted);
-            margin-bottom: 20px; padding: 0 7px;
-        }
+        @keyframes shine { 0%, 15% { left: -100%; } 16%, 100% { left: 250%; } }
+        .btn-main:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0px var(--dark); background: #ffeaa7; }
+        .btn-main:active { transform: scale(0.97); }
 
-        /* Actions */
-        .actions {
-            display: flex; flex-wrap: wrap; gap: 13px; justify-content: center;
-            margin-bottom: 23px;
+        .features {
+            display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+            background: #dfe6e9; padding: 18px; border-radius: 14px;
+            border: var(--border); margin-bottom: 25px;
         }
-        .actions .btn { flex: 1 1 140px; min-width: 135px; }
+        .features div {
+            background: #fff; padding: 10px 16px; border-radius: 25px;
+            font-weight: 800; border: 3px solid var(--dark);
+            box-shadow: var(--shadow-sm); transition: 0.25s;
+        }
+        .features div:hover { transform: rotate(-4deg) scale(1.08) translateY(-5px); background: var(--primary); color: #fff; border-color: #fff; }
 
-        /* CTV Section */
+        /* === KEY HOLOGRAPHIC BOX - ULTIMATE === */
+        .key-section {
+            background: linear-gradient(135deg, #a29bfe, var(--primary));
+            color: #fff; padding: 28px 20px; border-radius: var(--radius);
+            border: var(--border); box-shadow: var(--shadow);
+            text-align: center; margin-bottom: 25px; position: relative;
+            overflow: hidden;
+        }
+        .key-section::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent 30%);
+            animation: rotateBg 4s linear infinite; opacity: 0.6;
+        }
+        @keyframes rotateBg { 100% { transform: rotate(360deg); } }
+        
+        .key-display {
+            position: relative; z-index: 2; 
+            background: rgba(0,0,0,0.25);
+            padding: 20px; border-radius: 14px; margin: 18px 0;
+            font-family: 'Courier New', monospace; font-size: 22px; font-weight: 900;
+            letter-spacing: 2px; 
+            border: 3px dashed rgba(255,255,255,0.7);
+            backdrop-filter: blur(6px);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            animation: keyGlow 2s ease-in-out infinite alternate;
+            min-height: 60px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        @keyframes keyGlow {
+            0% { box-shadow: 0 0 15px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.2); }
+            100% { box-shadow: 0 0 25px rgba(255,255,255,0.8), inset 0 0 30px rgba(255,255,255,0.4); }
+        }
+        .key-display.loading {
+            font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9);
+            animation: pulseText 1.2s ease-in-out infinite;
+        }
+        @keyframes pulseText { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        
+        .copy-btn {
+            position: relative; z-index: 2; background: #fff; color: var(--primary);
+            border: var(--border); padding: 14px 32px; border-radius: 50px;
+            font-weight: 900; cursor: pointer; box-shadow: var(--shadow-sm);
+            transition: all 0.2s; font-family: 'Nunito', sans-serif; font-size: 16px;
+        }
+        .copy-btn:hover { transform: scale(1.05); box-shadow: var(--shadow); background: #f8f9fa; }
+        .copy-btn:active { transform: scale(0.95); box-shadow: 1px 1px 0px var(--dark); }
+        .copy-btn.copied { background: var(--green) !important; color: #fff !important; }
+
+        .telegram-main { background: #0984e3; color: #fff; }
+        .telegram-main:hover { background: #00cec9; }
+
         .ctv-section {
-            background: linear-gradient(135deg, rgba(225,29,72,0.14), rgba(244,63,94,0.07));
-            border: 1px dashed rgba(244, 63, 94, 0.48);
-            padding: 17px 16px; border-radius: var(--radius-md);
-            text-align: center; margin-bottom: 23px;
-            animation: fadeIn 0.55s ease 0.12s backwards;
+            background: #ffeaa7; padding: 25px 20px; border-radius: var(--radius);
+            border: var(--border); box-shadow: var(--shadow); text-align: center; margin: 25px 0;
         }
-        @keyframes fadeIn { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:translateY(0)} }
+        .ctv-section h2 { font-weight: 900; color: #d35400; margin-bottom: 10px; }
+
+        .contact-info {
+            background: #f5f6fa; padding: 18px; border-radius: 14px;
+            border: var(--border); text-align: center;
+        }
+        .contact-info a { color: var(--primary); font-weight: 800; text-decoration: none; transition: 0.2s; }
+        .contact-info a:hover { color: var(--pink); text-decoration: underline; }
+
+        /* === CARTOON POPUP ULTIMATE === */
+        #pricingModal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 99999; opacity: 0; visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #pricingModal.show { opacity: 1; visibility: visible; }
+
+        .modal-box {
+            background: #fff; border: 5px solid var(--dark); border-radius: 24px;
+            padding: 30px 25px; width: 95%; max-width: 500px;
+            box-shadow: 12px 12px 0px var(--dark), 0 0 40px rgba(108, 92, 231, 0.4);
+            position: relative; transform: scale(0.7) translateY(40px) rotate(-2deg);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center; overflow: visible;
+        }
+        #pricingModal.show .modal-box { transform: scale(1) translateY(0) rotate(0); }
+
+        .modal-close {
+            position: absolute; top: -18px; right: -18px;
+            background: var(--pink); color: #fff; width: 45px; height: 45px;
+            border-radius: 50%; border: 4px solid var(--dark);
+            font-size: 24px; font-weight: 900; cursor: pointer;
+            box-shadow: var(--shadow-sm); transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center; z-index: 10;
+        }
+        .modal-close:hover { transform: rotate(180deg) scale(1.15); background: #e17055; }
+
+        .modal-title { font-size: 24px; font-weight: 900; color: var(--dark); margin: 0 0 5px; }
+        .modal-sub { font-size: 14px; color: #636e72; margin-bottom: 20px; font-weight: 800; }
+
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 25px;
+        }
+        .price-card {
+            background: #f8f9fa; border: 3px solid var(--dark); border-radius: 16px;
+            padding: 16px 10px; cursor: pointer; transition: 0.25s; position: relative;
+        }
+        .price-card:hover { transform: translateY(-6px) rotate(-3deg); background: #fff; box-shadow: var(--shadow-sm); }
+        .price-card.popular { 
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e); 
+            border-color: #e67e22; box-shadow: var(--shadow-sm); 
+        }
+        .price-card .badge {
+            position: absolute; top: -12px; right: -12px;
+            background: var(--pink); color: #fff; font-size: 11px; padding: 5px 10px;
+            border-radius: 20px; border: 3px solid var(--dark); font-weight: 900;
+            box-shadow: 3px 3px 0px var(--dark); animation: bounceBadge 1.5s infinite alternate;
+        }
+        @keyframes bounceBadge { 0% { transform: scale(1); } 100% { transform: scale(1.1) rotate(5deg); } }
         
-        .ctv-section h4 {
-            margin-bottom: 7.5px; font-size: 16.5px; font-weight: 750;
-            color: #fda4af;
-        }
-        .ctv-section p {
-            font-size: 12.5px; color: var(--text-secondary); margin-bottom: 13px; line-height: 1.48;
-        }
+        .price-card .dur { display: block; font-size: 14px; color: #636e72; font-weight: 800; }
+        .price-card .price { display: block; font-size: 26px; font-weight: 900; color: var(--dark); margin-top: 5px; }
 
-        /* Footer */
-        .footer {
-            border-top: 1px solid var(--border-subtle);
-            padding-top: 19px; text-align: center;
-            font-size: 13.5px; color: var(--text-muted);
-            animation: fadeIn 0.75s ease 0.28s backwards;
+        .buy-options { display: flex; flex-direction: column; gap: 12px; }
+        .cartoon-btn {
+            display: flex; align-items: center; justify-content: center;
+            padding: 16px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 15px;
+            border: 3px solid var(--dark); box-shadow: var(--shadow-sm);
+            transition: all 0.25s; color: #fff; position: relative; overflow: hidden;
         }
-        .footer a {
-            color: var(--accent-gold); text-decoration: none;
-            font-weight: 550; position: relative; padding: 2px 0;
-            transition: color 0.2s;
+        .cartoon-btn:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0px var(--dark); }
+        .cartoon-btn::after {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg); animation: shine 3s infinite;
         }
-        .footer a::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 0; height: 2px; background: var(--accent-gold);
-            border-radius: 2px; transition: width 0.24s var(--ease);
-        }
-        .footer a:hover { color: #fff; }
-        .footer a:hover::after { width: 100%; }
+        .btn-shop { background: var(--green); }
+        .btn-discord { background: #5865F2; }
+        .btn-telegram { background: #0088cc; }
 
-        /* Confetti */
-        .confetti {
-            position: fixed; width: 8.5px; height: 8.5px; pointer-events: none;
-            z-index: 1000; animation: confettiFall 2.1s ease-out forwards;
-            border-radius: 2px;
+        /* === RESPONSIVE & PREFS === */
+        @media (max-width: 480px) {
+            .container { padding: 20px 15px; margin: 15px auto; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .modal-box { padding: 25px 18px; }
+            h1 { font-size: 24px; }
+            .marquee-content { font-size: 13px; animation-duration: 18s; }
+            .key-display { font-size: 18px; padding: 16px; }
         }
-        @keyframes confettiFall {
-            0% { transform: translateY(-12px) rotate(0deg) scale(1); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg) scale(0.75); opacity: 0; }
-        }
-
-        /* Copy Success */
-        @keyframes successPulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
-            70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-        .btn-copied {
-            animation: successPulse 0.55s ease-out;
-            background: linear-gradient(135deg, #059669, #047857) !important;
-        }
-
-        /* Responsive */
-        @media (max-width: 620px) {
-            .container { padding: 21px 17px; margin: 5px; }
-            .banner { padding: 14px 15px; font-size: 13.5px; }
-            .product-link { flex-direction: column; align-items: flex-start; padding: 13.5px; }
-            .product-link .icon { font-size: 23px; }
-            .btn { padding: 11.5px 19px; font-size: 12.5px; }
-            .actions .btn { flex: 1 1 125px; min-width: 120px; }
-            .price-grid { grid-template-columns: 1fr 1fr; }
-            .key-box { font-size: 15.5px; padding: 13.5px 15px; }
-            .trust-badges { gap: 5.5px; }
-            .badge { padding: 5.5px 11px; font-size: 10.5px; }
-        }
-
-        @media (max-width: 380px) {
-            .price-grid { grid-template-columns: 1fr; }
-            .actions { gap: 10px; }
-            .actions .btn { flex: 1 1 100%; min-width: 100%; }
-        }
-
-        /* Accessibility */
-        .btn:focus-visible, .product-link:focus-visible, a:focus-visible {
-            outline: 2.5px solid var(--primary);
-            outline-offset: 3.5px;
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animated"></div>
-    <div id="particles"></div>
+    <div class="bg-pattern"></div>
+    <div class="bg-blob blob-1"></div><div class="bg-blob blob-2"></div><div class="bg-blob blob-3"></div>
 
-    <main class="container">
-        <!-- Product Link -->
-        <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" 
-           class="product-link" target="_blank" rel="noopener noreferrer">
-            <span class="icon">🛒</span>
-            <span class="text">
-                WEBSITE MUA KEY APP MOD SKIN FREE FIRE !! 
-                <small>APP SKIN TOOLS V7 - NO BAN ADR FF X FF MAX</small>
-            </span>
+    <!-- CHẠY CHỮ THÔNG BÁO -->
+    <div class="marquee-wrap anim-in">
+        <div class="marquee-bar">
+            <div class="marquee-content">
+                🚀 SKIN TOOLS HH V7 CHÍNH THỨC RA MẮT | 🔥 KHÔNG BAN ADR | ⚡ KEY TỰ ĐỘNG 24/7 | 🎁 ƯU ĐÃI 30% CHO 50 NGƯỜI ĐẦU TIÊN | 📲 LIÊN HỆ ADMIN @minhphongxvn
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="anim-in d1">🔑SKIN TOOLS HH V7 - Nhận Key FREE</h1>
+        <div class="features anim-in d3">
+            <div>✅ Tự động 100%</div>
+            <div>🛡️ Đảm bảo uy tín</div>
+            <div>🔒 Không khoá acc</div>
+            <div>⚡ Giao key ngay</div>
+        </div>
+
+        <div class="key-section anim-in d4">
+            <h2>🔑 KEY VIP CỦA BẠN</h2>
+            <p>Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
+            <div class="key-display loading" id="keyDisplay">⏳ Đang tải key...</div>
+            <button class="copy-btn" id="copyBtn" onclick="copyKey()">📋 SAO CHÉP KEY</button>
+            <p style="margin-top: 14px; font-size: 13px; opacity: 0.9;">💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động</p>
+        </div>
+
+        <a href="https://t.me/pixelhudmodsV1_bot" class="btn-main telegram-main anim-in d5">
+            💬 MỞ TELEGRAM BOT MOD BOM KEO FREE !<br>
+            <span style="font-size:14px">ANDROID và IOS !!!</span>
         </a>
 
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <span class="badge">✅ Tự động 100%</span>
-            <span class="badge">🛡️ Đảm bảo uy tín</span>
-            <span class="badge">🔒 Không khoá acc</span>
-            <span class="badge">⚡ Giao key ngay</span>
-        </div>
-
-        <!-- Key Section -->
-        <section class="key-section">
-            <h3>🔑 KEY VIP CỦA BẠN</h3>
-            <p>Sao chép ngay và dán vào app hoặc bot telegram nhé!</p>
-            
-            <div class="key-box">
-                <span id="keyText" class="key-text loading">Đang tải key...</span><span class="cursor"></span>
-            </div>
-            
-            <button class="btn btn-primary" onclick="copyKey()" id="copyBtn" disabled>
-                📋 SAO CHÉP KEY
-            </button>
-            
-            <p style="font-size:11.5px; color:var(--text-muted); margin-top:11px;">
-                💡 Chạm giữ vào key để copy thủ công nếu nút không hoạt động
-            </p>
-        </section>
-
-        <!-- Telegram Bot -->
-        <div style="text-align:center; margin-bottom:19px;">
-            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener">
-                💬 MỞ TELEGRAM BOT MOD BOM KEO FREE ! <br> ANDROID và IOS !!! 
-            </a>
-        </div>
-
-        <!-- Pricing -->
-        <h3 class="pricing-title">👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</h3>
-        <div class="price-grid">
-            <div class="price-card">
-                <div class="price-time">1 Ngày</div>
-                <div class="price-cost">5K</div>
-            </div>
-            <div class="price-card">
-                <div class="price-time">3 Ngày</div>
-                <div class="price-cost">10K</div>
-            </div>
-            <div class="price-card">
-                <div class="price-time">7 Ngày</div>
-                <div class="price-cost">20K</div>
-            </div>
-            <div class="price-card">
-                <div class="price-time">30 Ngày</div>
-                <div class="price-cost">69K</div>
-            </div>
-        </div>
-        <p class="price-note">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</p>
-
-        <!-- Action Buttons -->
-        <div class="actions">
-            <a href="https://discord.gg/EFvxcQQ8yb" class="btn btn-discord" target="_blank" rel="noopener noreferrer">
-                🤖 MUA KEY DISCORD
-            </a>
-            <a href="https://t.me/pixelhudmodsV1_bot" class="btn btn-telegram" target="_blank" rel="noopener noreferrer">
-                🤖 MUA KEY TELEGRAM
-            </a>
-        </div>
-
-        <!-- CTV Section -->
-        <section class="ctv-section">
-            <h4>🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h4>
-            <p>🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần</p>
-            <!-- ⚠️ THAY LINK GROUP CỦA BẠN -->
-            <a href="https://t.me/your_ctv_group_link" class="btn btn-group" target="_blank" rel="noopener noreferrer">
+        <div class="ctv-section anim-in d6">
+            <h2>🤝 TUYỂN CTV - KIẾM TIỀN CÙNG CHÚNG MÌNH</h2>
+            <p>🎯 Nhận CTV bán key | 📱 Share app kiếm hoa hồng<br>
+            💰 Hoa hồng hấp dẫn | 🎁 Thưởng nóng hàng tuần</p>
+            <a href="https://t.me/pixelhudmods_vietnam" class="btn-main" style="background:#e17055; margin-top:15px;">
                 👥 THAM GIA GROUP CTV NGAY
             </a>
-        </section>
+        </div>
 
-        <!-- Footer -->
-        <footer class="footer">
+        <div class="contact-info anim-in d6">
             <p>📞 Zalo: <a href="https://zalo.me/0963677502">0963677502</a> — Ho Minh Phong</p>
-            <p style="margin:6.5px 0;">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
-            <p>👾 Discord Admin: @honghac</p>
-        </footer>
-    </main>
+            <p style="margin-top:10px">✈️ Tele Admin: <a href="https://t.me/minhphongxvn">@minhphongxvn</a></p>
+            <p style="margin-top:10px">👾 Discord Admin: @honghac. ( có dấu chấm ) </p>
+        </div>
+    </div>
+
+    <!-- BANNER POPUP CARTOON ULTIMATE -->
+    <div id="pricingModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closePriceModal()">×</button>
+            <div class="modal-title">👑 MUA KEY TỰ ĐỘNG - DUYỆT NGAY</div>
+            <div class="modal-sub">⚡ Duyệt tiền 24/24 - Nhận key ngay lập tức!</div>
+            
+            <div class="pricing-grid">
+                <div class="price-card"><span class="dur">1 Ngày</span><span class="price">5K</span></div>
+                <div class="price-card"><span class="dur">3 Ngày</span><span class="price">10K</span></div>
+                <div class="price-card popular"><span class="badge">🔥 HOT</span><span class="dur">7 Ngày</span><span class="price">20K</span></div>
+                <div class="price-card"><span class="dur">30 Ngày</span><span class="price">69K</span></div>
+            </div>
+
+            <div class="buy-options">
+                <a href="https://shophonghac.online/product/app-skin-tools---v7-no-ban-adr-ff-x-ff-max" class="cartoon-btn btn-shop">🛒 MUA TẠI SHOP ( AUTO CARD ) </a>
+                <a href="https://discord.gg/EFvxcQQ8yb" class="cartoon-btn btn-discord">🤖 MUA QUA DISCORD BOT ( AUTO BANK ) </a>
+                <a href="https://t.me/pixelhudmodsV1_bot" class="cartoon-btn btn-telegram">✈️ MUA QUA TELEGRAM BOT ( AUTO BANK )</a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // === Particles ===
-        (function initParticles() {
-            const c = document.getElementById('particles');
-            for(let i = 0; i < 32; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDelay = Math.random() * 11 + 's';
-                p.style.animationDuration = (9 + Math.random() * 7) + 's';
-                p.style.opacity = 0.35 + Math.random() * 0.5;
-                c.appendChild(p);
-            }
-        })();
-
-        // === Extract Key from URL ===
+        // === LOGIC LẤY KEY TỪ URL ===
         function getKeyFromURL() {
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get('key');
-            } catch { return null; }
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('key'); // Lấy giá trị sau ?key=...
         }
 
-        // === Typing Animation ===
-        const keyText = document.getElementById('keyText');
-        const copyBtn = document.getElementById('copyBtn');
-        let currentKey = '';
-
-        function typeKey(key) {
-            keyText.classList.remove('loading');
-            keyText.textContent = '';
-            let idx = 0;
-            
-            function type() {
-                if(idx < key.length) {
-                    keyText.textContent += key[idx];
-                    idx++;
-                    setTimeout(type, 42);
-                } else {
-                    document.querySelector('.cursor').style.display = 'none';
-                    copyBtn.disabled = false;
-                    currentKey = key;
-                }
-            }
-            type();
-        }
-
-        // === Page Load ===
-        window.addEventListener('load', () => {
+        function displayKey() {
+            const keyDisplay = document.getElementById('keyDisplay');
+            const copyBtn = document.getElementById('copyBtn');
             const key = getKeyFromURL();
             
-            if(key && key.trim() !== '') {
-                setTimeout(() => typeKey(key), 650);
+            if (key && key.trim() !== '') {
+                // Có key hợp lệ
+                keyDisplay.textContent = key;
+                keyDisplay.classList.remove('loading');
+                copyBtn.disabled = false;
+                copyBtn.style.opacity = '1';
             } else {
-                keyText.textContent = '❌ Không tìm thấy key!';
-                keyText.classList.remove('loading');
+                // Không có key
+                keyDisplay.textContent = '❌ Không tìm thấy key trong URL';
+                keyDisplay.classList.remove('loading');
                 copyBtn.disabled = true;
+                copyBtn.style.opacity = '0.6';
             }
-            
-            setTimeout(() => {
-                document.querySelector('.key-section')?.scrollIntoView({
-                    behavior: 'smooth', block: 'center'
-                });
-            }, 1300);
-        });
-
-        // === Copy Key ===
-        function copyKey() {
-            if(!currentKey || currentKey.length < 5) {
-                alert('⏳ Key chưa sẵn sàng!');
-                return;
-            }
-            
-            const btn = document.getElementById('copyBtn');
-            const originalHTML = btn.innerHTML;
-            
-            navigator.clipboard.writeText(currentKey).then(() => {
-                btn.innerHTML = '✅ ĐÃ COPY!';
-                btn.classList.add('btn-copied');
-                btn.disabled = true;
-                spawnConfetti();
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.classList.remove('btn-copied');
-                    btn.disabled = false;
-                }, 2400);
-            }).catch(() => {
-                const ta = document.createElement('textarea');
-                ta.value = currentKey;
-                ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                
-                btn.innerHTML = '✅ ĐÃ COPY!';
-                btn.classList.add('btn-copied');
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.classList.remove('btn-copied');
-                }, 2400);
-                spawnConfetti();
-            });
         }
 
-        // === Confetti ===
-        function spawnConfetti() {
-            const colors = ['#f59e0b', '#ec4899', '#06b6d4', '#10b981', '#8b5cf6', '#f43f5e'];
-            for(let i = 0; i < 38; i++) {
-                setTimeout(() => {
-                    const c = document.createElement('div');
-                    c.className = 'confetti';
-                    c.style.left = (Math.random() * 100) + 'vw';
-                    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2.5px';
-                    c.style.width = (5.5 + Math.random() * 7) + 'px';
-                    c.style.height = c.style.width;
-                    c.style.animationDelay = Math.random() * 0.35 + 's';
-                    c.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    document.body.appendChild(c);
-                    setTimeout(() => c.remove(), 2300);
-                }, i * 28);
+        // === POPUP AUTO SHOW ===
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('pricingModal').classList.add('show'), 800);
+            displayKey(); // Hiển thị key khi trang load xong
+        });
+        
+        function closePriceModal() { document.getElementById('pricingModal').classList.remove('show'); }
+        document.getElementById('pricingModal').addEventListener('click', (e) => { if (e.target.id === 'pricingModal') closePriceModal(); });
+
+        // === COPY KEY LOGIC ===
+        function copyKey() {
+            const keyDisplay = document.getElementById('keyDisplay');
+            const copyBtn = document.getElementById('copyBtn');
+            const key = keyDisplay.textContent.trim();
+            
+            if (key && !keyDisplay.classList.contains('loading') && !key.startsWith('❌')) {
+                navigator.clipboard.writeText(key).then(() => {
+                    // Hiệu ứng feedback
+                    copyBtn.textContent = '✅ ĐÃ COPY!';
+                    copyBtn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = '📋 SAO CHÉP KEY';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback cho trình duyệt cũ
+                    const ta = document.createElement('textarea');
+                    ta.value = key; document.body.appendChild(ta);
+                    ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                    
+                    copyBtn.textContent = '✅ ĐÃ COPY!';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.textContent = '📋 SAO CHÉP KEY';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            } else {
+                alert('⚠️ Không có key hợp lệ để sao chép!');
             }
         }
     </script>
